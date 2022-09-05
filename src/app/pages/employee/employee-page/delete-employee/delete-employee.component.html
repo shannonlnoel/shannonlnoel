@@ -1,0 +1,105 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Delete Employee</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="tertiary" (click)="dismissModal()">Return</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<!-- This modal is not complete, please compare with "Deletevenue" for the correct format -->
+<!-- Looks at the html, scss and typescript -->
+
+<ion-content>
+    <br/>
+    <ion-label class="ion-text-center">
+      <h3>Are you sure you want to delete the following employee?</h3>
+    </ion-label>
+    <br/>
+        <ion-item> 
+          <ion-label>
+            <h2>Profile Photo:</h2>
+            <ion-img [src]="createImg(employee.data.photo)"></ion-img>
+            <!-- <p class="ion-text-start">No Profile image</p> -->
+          </ion-label>
+        </ion-item>
+    
+        <ion-item> 
+          <ion-label>
+            <h2>Name:</h2>
+            <p class="ion-text-start">{{employee.data.appUser.firstName}}</p>
+          </ion-label>
+        </ion-item>
+    
+        <ion-item> 
+          <ion-label>
+            <h2>Surname:</h2>
+            <p class="ion-text-start">{{employee.data.appUser.lastName}}</p>
+          </ion-label>
+        </ion-item>
+    
+        <ion-item > 
+          <ion-label>
+            <h2>ID Number:</h2>
+            <p class="ion-text-start">{{employee.data.idNumber}}</p>
+          </ion-label>
+        </ion-item>
+    
+        <ion-item > 
+          <ion-label>
+            <h2>Email:</h2>
+            <p class="ion-text-start">{{employee.data.appUser.email}}</p>
+          </ion-label>
+        </ion-item>
+    
+        <ion-item > 
+          <ion-label>
+            <h2>Phone Number:</h2>
+            <p class="ion-text-start">{{employee.data.appUser.phoneNumber}}</p>
+          </ion-label>
+        </ion-item>
+    
+        <ion-item > 
+          <ion-label>
+            <h2>Title:</h2>
+            <p class="ion-text-start">{{employee.data.appUser.title.description}}</p>
+          </ion-label>
+        </ion-item>
+    
+        <ion-item > 
+          <ion-label>
+            <h2>Employee Type:</h2>
+            <p class="ion-text-start">{{employee.data.employeeType.name}}</p>
+          </ion-label>
+        </ion-item>
+    
+        <ion-item > 
+          <ion-label>
+            <h2>Qualification:</h2>
+            <p class="ion-text-start">{{employee.data.qualification.description}}</p>
+          </ion-label>
+        </ion-item>
+    
+        <ion-item > 
+          <ion-label>
+            <h2>Contract:</h2>
+              <pdf-viewer [src]="createContract(employee.data.contract)"
+                        [render-text]="true"
+                        [original-size]="false"
+                        ></pdf-viewer>
+          </ion-label>
+        </ion-item>
+        
+        <div class="center">
+          <ion-row class="width-80">
+            <ion-col>
+              <ion-button class="btn-100" color="light" (click)="dismissModal()">Cancel</ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button class="btn-100" (click)="delete(employee)" color="danger">Delete</ion-button>
+            </ion-col>
+          </ion-row>
+        </div>
+    
+
+  </ion-content>

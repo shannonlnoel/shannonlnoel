@@ -1,0 +1,14 @@
+// #barCanvas, #lineCanvas {
+//   position: relative;
+//   max-height: 80vh !important;
+//   max-width: 40vw;
+//   height:80vh !important;
+//   width:40vw;
+// }
+
+#barCanvas {
+  width: 40vw;
+  max-width: 90vw;
+  min-width: 270px;
+  height : auto;
+}

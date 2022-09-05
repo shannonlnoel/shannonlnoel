@@ -1,0 +1,93 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>trainerReport</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+
+  <br/>
+  <ion-searchbar #search (ionClear)="searchTrainers(search.value)" (ionInput)="searchTrainers(search.value)" expand="block" placeholder='Search Trainers...' [(ngModel)]="filter"
+  animated="true" debounce="200"></ion-searchbar>
+  <br/><br/>
+
+  <div id="htmlData">
+    <div >
+      <div class="w-100 head"><h1 id="hide" class="text-center">Trainer Report</h1></div>
+    </div>
+    <div class="w-100 head"><h1 id="header" class="text-center">A table representing trainers and their relevant information</h1></div>
+    <br/>
+    <div class="w-100 center"><div class="downloadbutton"><ion-button id="downloadbutton" (click)="download()">Download Report</ion-button></div></div>
+    <br/>
+    <div class="w-100 center" >
+      <ion-grid class="center">
+
+        <ion-row>
+          <ion-col class="heading" size="0.5">No.</ion-col>
+          <ion-col class="heading" id="hidehead">Profile</ion-col>
+          <ion-col class="heading">Full Name</ion-col>
+          <ion-col class="heading" size="3">Contact Details</ion-col>
+          <ion-col class="heading">Qualification</ion-col>
+          <ion-col class="heading">Qualification Type</ion-col>
+          <ion-col class="heading" size="1.4">Lesson's Made</ion-col>
+        </ion-row>
+
+        <ion-row *ngFor="let trainer of trainers">
+          <!-- count -->
+          <ion-col class="outline" size="0.5">
+            <h5>{{ trainer.displayID }}</h5>
+          </ion-col>
+          <!-- photo -->
+          <ion-col id="hideimg" class="outline">
+            <img [src]="createImg(trainer.photo)" alt="Trainer Photo">
+          </ion-col>
+          <!-- name -->
+          <ion-col class="outline">
+            <h5>{{ trainer.name }}</h5>
+          </ion-col>
+          <!-- contacts -->
+          <ion-col class="outline" size="3">
+            <div class="col">
+              <h5>{{ trainer.email }}</h5>
+              <h5>{{ trainer.phone }}</h5>
+            </div>
+          </ion-col>
+          <!-- qualifications -->
+          <ion-col class="outline">
+            <div class="col">
+              <h5>{{ trainer.qDescription }}</h5>
+            </div>
+          </ion-col>
+          <!-- qualifications -->
+          <ion-col class="outline">
+            <div class="col">
+              <h5>{{ trainer.qType }}</h5>
+            </div>
+          </ion-col>
+          <!-- noLessons -->
+          <ion-col class="outline" size="1.4">
+            <h5>{{ trainer.noLessons }}</h5>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col></ion-col>
+          <ion-col id="hidehea"></ion-col>
+          <ion-col></ion-col>
+          <ion-col></ion-col>
+          <ion-col></ion-col>
+          <ion-col class="heading" size="1.4">Total: {{noLessons}}</ion-col>
+        </ion-row>
+        
+        <div id="hide2"><h1>Date Generated: {{date}}</h1></div>
+        <div id="hide3"><h1>Total Trainers: {{total}}</h1></div>
+
+      </ion-grid>
+
+    </div>
+
+
+    
+
+  </div>
+
+</ion-content>

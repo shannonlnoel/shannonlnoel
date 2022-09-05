@@ -1,0 +1,35 @@
+<ion-content>
+
+  <ion-card>
+    <ion-card-content>
+      <div class="ion-text-center">
+        <h1 style="font-family: inherit; border:1px">FORGOT PASSWORD</h1>
+      </div>
+      <form #logForm="ngForm" (ngSubmit)="onSubmit(logForm)">
+        <div padding>
+          <ion-item>
+            <ion-icon name="mail" slot="start" color="#282828"></ion-icon>
+            <ion-input type="email" name="email" ngModel email #emailCtrl="ngModel" placeholder="Email" required ></ion-input>
+          </ion-item>
+          <ion-text color="danger" *ngIf="!emailCtrl.valid && emailCtrl.touched">
+            <p>Please enter a valid email address</p>
+          </ion-text>
+          <br/>
+        </div>
+        <div>
+          <ion-button [disabled]="!logForm.valid" *ngIf="!isLoggedin" expand="block" shape="round" type="submit">Reset</ion-button>
+        </div>  
+      </form>
+      <ion-text color="ion-text-center" align="center" *ngIf="error">
+        <br />
+        <p>{{errormsg}} <b><a routerLink="/login/signup"><p style="color:#717274">Sign Up</p></a></b></p>
+      </ion-text>
+      <div class="ion-text-center">
+        <br />
+        <p>Remember your password?</p>
+        <b><a routerLink="/login"><p style="color:#717274">Login</p></a></b>    
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+

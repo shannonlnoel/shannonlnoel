@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>New Supplier Details</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="tertiary" (click)="this.global.dismissModal()"><ion-icon name="close-outline" size="large"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="cSupplierForm" (ngSubmit)="submitForm()"> 
+    <br/>
+
+    <div class="ion-text-center">
+      <p style="font-size:large">Please fill in the supplier information below</p>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating">Name:</ion-label>
+      <ion-input formControlName="supplierName" type="text" required="" id="supplierName" ></ion-input>
+      <br/>
+    </ion-item>
+    <span class="error ion-padding" *ngIf="errorControl.supplierName?.errors?.required && cSupplierForm.get('supplierName').touched">
+      Name is required<br/>
+    </span>
+
+    <ion-item>
+      <ion-label position="floating">Email:</ion-label>
+      <ion-input formControlName="supplierEmail" type="email" required="" id="supplierEmail" ></ion-input>
+      <br/>
+    </ion-item>
+    <span class="error ion-padding" *ngIf="errorControl.supplierEmail?.errors?.required && cSupplierForm.get('supplierEmail').touched">
+      Please enter a valid email address.<br/>
+    </span>
+
+    <ion-item>
+      <ion-label position="floating">Cell:</ion-label>
+      <ion-input minlength="10" maxlength="10" formControlName="supplierCell" type="tel" required="" id="supplierCell" ></ion-input>
+      <br/>
+    </ion-item>
+    <span class="error ion-padding" *ngIf="errorControl.supplierCell?.errors?.required && cSupplierForm.get('supplierCell').touched">
+      Please enter a valid cell number.<br/>
+    </span>
+
+    <ion-item>
+      <ion-label id="addresslabel" position="floating">Address:</ion-label>
+      <input ngx-google-places-autocomplete (onAddressChange)="handleAddressChange($event)" formControlName="supplierAddress" type="text" required="" id="supplierAddress">
+      <br/>
+    </ion-item>
+    <span class="error ion-padding" *ngIf="addresserror">
+      Address must be resolved by clicking on a suggestion<br/>
+    </span>
+
+    <br>
+    <br>
+    <ion-button type="submit" color="success" [disabled]="!cSupplierForm.valid || addresserror"  class="ion-float-right" style="margin-left:2%; margin-right:10%; width:55% ;">Create supplier</ion-button>
+    <ion-button color="light" class="ion-float-left" style="margin-left:10%;width: 20%;" (click)="this.global.dismissModal()">Cancel</ion-button>
+    
+  </form>
+</ion-content>
+

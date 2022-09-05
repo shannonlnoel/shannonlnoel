@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>View "{{writeOff.writeOffLine[0].saleItem.name}} Write-Off"</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="tertiary" (click)="this.global.dismissModal()"><ion-icon name="close-outline" size="large"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <br/>
+  <div class="ion-text-center">
+    <p style="font-size:large; color: white;margin-left: 10%;margin-right: 10%;">The following information corresponds with the selected write-off</p>
+    <ion-item >
+      <ion-label class="ion-text-left">Name:</ion-label>
+      <ion-label class="ion-text-right">{{writeOff.writeOffLine[0].saleItem.name}}</ion-label>
+    </ion-item>
+    <ion-item >
+      <ion-label class="ion-text-left">Reason:</ion-label>
+      <ion-label class="ion-text-wrap ion-text-right">{{writeOff.writeOffLine[0].writeOffReason.description}}</ion-label>
+    </ion-item>
+
+    <ion-item >
+      <ion-label>
+        <img [src]="this.global.createImg(writeOff.writeOffLine[0].saleItem.photo)">
+      </ion-label>
+    </ion-item>
+
+
+      <ion-item >
+        <ion-label class="ion-text-left">Quantity:</ion-label>
+        <ion-label class="ion-text-right">{{writeOff.writeOffLine[0].quantity}}</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="ion-text-left">Employee:</ion-label>
+        <ion-label class="ion-text-right">{{writeOff.employee.appUser.firstName}}</ion-label>
+      </ion-item>
+      <br/><br/>
+  </div>
+  <br>
+  <ion-button color="light" class="ion-float-right" style="margin-right:10%;width:30% " (click)="this.global.dismissModal()">Return</ion-button>
+</ion-content>

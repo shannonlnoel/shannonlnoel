@@ -1,0 +1,38 @@
+<ion-content>
+
+  <ion-card>
+    <ion-card-content>
+      <div class="ion-text-center">
+        <h1 style="font-family: inherit; border:1px">OTP</h1>
+      </div>
+      <form #logForm="ngForm" (ngSubmit)="onSubmit(logForm)">
+        <div padding>
+
+          <ion-item>
+            <ion-icon name="mail" slot="start" color="#282828"></ion-icon>
+            <ion-input minlength="6" maxlength="6" type="text" name="otp" ngModel #otp="ngModel" placeholder="OTP" required></ion-input>
+          </ion-item>
+
+          <ion-text color="danger" *ngIf="!otp.valid && otp.touched">
+            <p>OTP must be 6 digits long.</p>
+          </ion-text>
+          <br/>
+        </div>
+        <div>
+          <ion-button [disabled]="!logForm.valid" *ngIf="!isLoggedin" expand="block" shape="round" type="submit">Verify</ion-button>
+          <div class="ion-text-center" *ngIf="isLoggedin">
+            <ion-button shape="round">
+              <ion-spinner name="circles"></ion-spinner>
+            </ion-button>   
+          </div> 
+        </div>  
+      </form>
+      <div class="ion-text-center">
+        <br />
+        <p>Remember your password?</p>
+        <b><a routerLink="/login"><p style="color:#717274">Login</p></a></b>    
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+

@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Confirm Payment</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="tertiary" (click)="this.global.dismissModal()">
+        <ion-icon name="close-outline" size="large"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <br />
+  <div class="ion-text-center">
+    <p style="font-size:large">Please confirm the following payment information</p>
+  </div>
+  <div *ngFor="let item of cartData.items">
+    <ion-item>
+
+
+        <ion-label class="ion-text-wrap">
+          <h2>{{item?.name}}</h2>
+        </ion-label>
+
+        <ion-label class="xc ion-text-center quantity" color="primary">x{{item?.quantity}}</ion-label>
+
+
+        <ion-label class=" ion-text-right quantity">{{item.subTotal | currency: 'ZAR'}}</ion-label>
+
+    </ion-item>
+  </div>
+  <br>
+  <ion-item>
+    <ion-label class="ion-text-left">Total (Excl. Vat):</ion-label>
+    <ion-label class="ion-text-right">{{priceExcVat | currency: 'ZAR'}}</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label class="ion-text-left">Grand total (Incl. Vat):</ion-label>
+    <ion-label class="ion-text-right">{{cartData.grandPriceTotal | currency: 'ZAR'}}</ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Payment Method: </ion-label>
+    <ion-select
+      placeholder="Select payment method"
+      (ionChange)="handleChange($event)"
+    >
+      <ion-select-option value="cash">Cash</ion-select-option>
+      <ion-select-option value="card">Card</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <!-- <ion-item lines="none">
+    <ion-label>Current value: {{ currentMethod | json }}</ion-label>
+  </ion-item> -->
+
+  <!-- <select ng-change="updateBtn()" name="paymentType">
+    <option value="cash" selected="selected">Cash</option>
+    <option value="card">Card</option>
+  </select>
+
+  <button *ngIf="cashPay"></button> -->
+
+    <ion-col size="2">
+      <ion-button *ngIf="currentMethod === 'cash'" color="success"  expand="block"
+      (click)="cashPay()">Confirm cash payment</ion-button>
+    </ion-col>
+    <ion-col size="2">
+      <ion-button *ngIf="currentMethod === 'card'" color="success"  expand="block"
+      (click)="cardPay()">Proceed to Payment</ion-button>
+    </ion-col>
+    <ion-col >
+      <ion-button color="light"  expand="block" (click)="returnFrom()" >Return</ion-button>
+    </ion-col>
+
+
+</ion-content>

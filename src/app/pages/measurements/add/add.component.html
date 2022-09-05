@@ -1,0 +1,99 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>New Measurement Details</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="tertiary" (click)="dismissModal()"><ion-icon name="close-outline" size="large"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item slot="header" color="light">
+    <ion-label>Measurements</ion-label>
+  </ion-item>
+  <div class="ion-padding">
+    <!-- Measurements Form, plus pfd option to download report -->
+
+    <ion-card class="centerLogin" >
+      <ion-card-content>
+        <div class="ion-text-center">
+          <h1 style="font-family: inherit; border:1px">Add Measurements</h1>
+        </div>
+        <br/>
+
+        <form #measurementForm="ngForm"  (ngSubmit)="onMeasurementSubmit(measurementForm)">
+          <div padding>
+
+            <ion-item>
+              <ion-icon name="body-outline" slot="start" color="#282828"></ion-icon>
+              <ion-input 
+              type="number" 
+              name="bodyFat" 
+              ngModel 
+              #bodyFat="ngModel" 
+              placeholder="Body Fat %" 
+              required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-icon name="recording-outline" slot="start" color="#282828"></ion-icon>
+              <ion-input 
+              type="number" 
+              name="waist" 
+              ngModel 
+              #waist="ngModel" 
+              placeholder="Waist (cm)" 
+              required></ion-input>
+            </ion-item>
+            
+
+            <ion-item>
+              <ion-icon name="arrow-up-outline" slot="start" color="#282828"></ion-icon>
+              <ion-input 
+              type="number" 
+              name="height" 
+              ngModel 
+              #height="ngModel" 
+              placeholder="Height (cm)"
+              required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-icon name="scale-outline" slot="start" color="#282828"></ion-icon>
+              <ion-input 
+              type="number" 
+              name="weight" 
+              ngModel 
+              #weight="ngModel" 
+              placeholder="Weight (kg)" 
+              required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-icon name="calendar-outline" slot="start" color="#282828"></ion-icon>
+              <ion-input 
+              type="date" 
+              name="date" 
+              ngModel 
+              #date="ngModel" 
+              placeholder="Date" 
+              required></ion-input>
+            </ion-item>
+          
+            <br/>
+
+            <ion-button *ngIf="!isLoading" expand="block" shape="round" [disabled]="!measurementForm.valid" type="submit">Add</ion-button>
+
+          </div>  
+
+        </form>
+
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+    
+
+
+</ion-content>

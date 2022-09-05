@@ -1,0 +1,7 @@
+{
+  "name": "HIIT",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

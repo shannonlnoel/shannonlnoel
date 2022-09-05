@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Confirm Venue Details</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="tertiary" (click)="this.global.dismissModal()"><ion-icon name="close-outline" size="large"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <br/>
+  <div class="ion-text-center">
+    <p style="font-size:large">Please confirm the following venue information</p>
+  </div>
+
+    <ion-item > 
+        <ion-label class="ion-text-left">Name:</ion-label>
+        <ion-label class="ion-text-right">{{venue.name}}</ion-label>
+    </ion-item>
+    <ion-item>
+        <ion-label class="ion-text-left">Address:</ion-label>
+        <ion-label class="ion-text-wrap ion-text-right">{{venue.address}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+        <ion-label class="ion-text-left">Postal Code:</ion-label>
+        <ion-label class="ion-text-right">{{venue.postalCode}}</ion-label>
+    </ion-item>
+    
+    <ion-item>
+        <ion-label class="ion-text-left">Capacity:</ion-label>
+        <ion-label class="ion-text-right">{{venue.capacity}}</ion-label>
+    </ion-item>
+
+    <br/><br/>
+
+    <ion-button color="success" class="ion-float-right" style="margin-left:2%; margin-right:10%; width:55%;" (click)="confirmChanges(venue)">Confirm</ion-button>
+    <ion-button color="light" class="ion-float-left" style="margin-left:10%;width: 20%;" (click)="returnFrom()">Return</ion-button>
+
+</ion-content>

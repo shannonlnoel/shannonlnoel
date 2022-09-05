@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{supplier.name}} Details</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="tertiary" (click)="this.global.dismissModal()"><ion-icon name="close-outline" size="large"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <br/>
+  <div class="ion-text-center">
+    <p style="font-size:large">The following information corresponds with the {{supplier.name}} supplier</p>
+  </div>
+
+    <ion-item >
+      <ion-label class="ion-text-left">Name:</ion-label>
+      <ion-label class="ion-text-right">{{supplier.name}}</ion-label>
+    </ion-item>
+    <ion-item >
+      <ion-label class="ion-text-left">Email:</ion-label>
+      <ion-label class="ion-text-wrap ion-text-right">{{supplier.email}}</ion-label>
+    </ion-item>
+
+    <ion-item > 
+      <ion-label class="ion-text-left">Cell:</ion-label>
+      <ion-label class="ion-text-wrap ion-text-right">{{supplier.cell}}</ion-label>
+    </ion-item>
+
+    <ion-item > 
+      <ion-label class="ion-text-left">Address:</ion-label>
+      <capacitor-google-map id="map" style="width:100%;height:250px"></capacitor-google-map>
+    </ion-item>
+
+    <br/><br/>
+
+    <ion-button color="light" id="returnfrom" class="ion-float-left" style="margin-left:10%;width: 80%;" (click)="returnFrom()">Return</ion-button>
+
+</ion-content>

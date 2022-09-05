@@ -1,0 +1,98 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>New Stock Details</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="tertiary" (click)="this.global.dismissModal()"><ion-icon name="close-outline" size="large"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <br />
+  <form [formGroup]="cStockForm" (ngSubmit)="submitForm()">
+
+    <br/>
+    <div class="ion-text-center">
+      <p style="font-size:large">Please fill in the stock information below.</p>
+    </div>
+
+    <!-- supplier for the stock -->
+    <ion-item>
+      <ion-label position="floating">Supplier:</ion-label>
+      <ion-select formControlName="supplier" type="text" required="" id="supplier" >
+          <ion-select-option *ngFor="let supplier of suppliers" value="{{supplier.supplierID}},{{supplier.name}}">{{ supplier.name }}</ion-select-option>
+      </ion-select>
+      <br/>
+    </ion-item> 
+
+    <!-- Sale Item choosing system -->
+    <!-- <ion-item> -->
+      <br />
+      <ion-label id="exe" position="floating">Add Sale Items:</ion-label>
+    <!-- </ion-item> -->
+    
+    <div *ngFor="let item of stock">
+      <br />
+        <div class="center">
+          <div class="row width-80">
+
+            <div class="w-100 evenrow"> <!-- for selects -->
+
+              <!-- {{stock.displaycount}} -->
+  
+              <div class="w-100"> <!-- select for category -->
+                <!-- this is rendered from the oroginal, and on change pass the id of the obj and the category to set it to -->
+                <ion-select (ionChange)="setSaleItem(item, $event)" placeholder="SaleItem" type="text">
+                  <ion-select-option *ngFor="let si of saleitems" value="{{si.saleItemID}},{{si.name}}">{{ si.name }}</ion-select-option>
+                </ion-select>
+  
+              </div>
+  
+              <div class="w-100"> <!-- input for quantity -->
+                
+                <!-- <ion-select placeholder="Exercise" (ionChange)="setExercisePostID(exercise, $event)" [disabled]="!exercise.categoryset" type="text" required="" id="lessonEmployee" >
+                  <ion-select-option *ngFor="let exe of exercise.exercise" value="{{exe.exerciseID}},{{exe.name}}">{{exe.name}}</ion-select-option>
+                </ion-select> -->
+                <ion-input minvalue="1" type="number" placeholder="Quantity" (input)="setQuantity(item, $event)"></ion-input>
+  
+              </div>
+  
+            </div>
+  
+            <div class="deletebutton"> <!-- for button -->
+              <ion-button (click)="removeStockToForm(item)" color="danger">-</ion-button>
+            </div>
+  
+          </div>
+        </div>
+    </div>
+
+  <!-- TRY BIND TO MANY INPUTS WITH ONE CONTROL -->
+
+    <ion-button (click)="addSaleItemSlot()" class="addbutton" color="primary">+</ion-button>
+
+
+    <input class="hide" type="hidden" formControlName="stocks" id="exercises">
+
+    <!-- buttons for form -->
+    <div class="center">
+      <ion-row class="width-80">
+        <ion-col>
+          <ion-button color="primary"  (click)="createNewSaleItem()">Create New Sale Item</ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="center">
+      <ion-row class="width-80">
+        <ion-col>
+          <ion-button color="light" (click)="this.global.dismissModal()">Cancel</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="submitForm()" color="success" [disabled]="cStockForm.invalid || !validSaleItems">Recieve</ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
+
+  </form>
+
+</ion-content>

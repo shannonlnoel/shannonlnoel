@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar mode="ios">
+    <!--Menu toggle button that will display the menu-->
+      <ion-buttons slot="start">
+        <ion-menu-button menu="mainMenu"></ion-menu-button>
+      </ion-buttons>
+      <ion-title slot="">Payments</ion-title>
+      <img src="../../assets/BSC.png" width="80px" height="80px" alt="logo" slot="end">
+      <!--Can we change this dynamically when switching between tabs?-->
+    <!-- </ion-item> -->
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <ion-searchbar #search (ionClear)="searchPayment(search.value)" (ionInput)="searchPayment(search.value)" expand="block" placeholder='Search Receipt...'
+  animated="true" debounce="200"></ion-searchbar>
+  <br/><br/>
+
+  <ion-col *ngFor="let payment of payments"
+        class="listMargin">
+        <ion-card>
+
+          <h5 class="ion-align-self-center">Receipt #{{payment.paymentID}}</h5>
+          
+          <ion-card-content class="card-body card-buttons">
+            <div class="img-wrapper">
+              {{ getDate(payment.sale.date) }}
+              <br>
+              {{ payment.count }} Item(s)
+              <br>
+              R{{ payment.total }}.00
+            </div>
+
+            <div class="row align-items-center no-gutters">
+
+                <ion-button (click)="view(payment)" color="secondary" expand="block">View</ion-button>
+                <ion-button (click)="requestReund(payment)" color="danger" expand="block">Refund</ion-button>
+
+            </div>
+
+          </ion-card-content>
+
+        </ion-card>
+      </ion-col>
+
+  <!-- <pre>{{ payments | json}}</pre> -->
+
+</ion-content>

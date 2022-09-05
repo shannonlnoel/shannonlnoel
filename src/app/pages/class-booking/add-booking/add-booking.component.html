@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Schedule Event Details</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="tertiary" (click)="this.global.dismissModal()"><ion-icon name="close-outline" size="large"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <br/>
+  <div class="ion-text-center">
+    <p style="font-size:large">Would you like to add this booking to your cart?</p>
+  </div>
+
+  <ion-item >
+    <ion-label class="ion-text-left">Date:</ion-label>
+    <ion-label class="ion-text-wrap ion-text-right">{{dateString}}</ion-label>
+  </ion-item>
+
+  <ion-item >
+    <ion-label class="ion-text-left">Time:</ion-label>
+    <ion-label class="ion-text-right">{{timeStart}} - {{timeEnd}}</ion-label>
+  </ion-item>
+
+  <ion-item >
+    <ion-label class="ion-text-left">Price:</ion-label>
+    <ion-label class="ion-text-right">R{{this.scheduleEvent.bookingPriceHistory[0].amount}}</ion-label>
+  </ion-item>
+
+
+  <ion-item >
+    <ion-label class="ion-text-left">Venue name:</ion-label>
+    <ion-label class="ion-text-right">{{this.scheduleEvent.venue.name}}</ion-label>
+  </ion-item>
+  <ion-item >
+    <ion-label class="ion-text-left">Booking type name:</ion-label>
+    <ion-label class="ion-text-wrap ion-text-right">{{this.scheduleEvent.bookingType.name}}</ion-label>
+  </ion-item>
+  <ion-item >
+    <ion-label class="ion-text-left">Employee name:</ion-label>
+    <ion-label class="ion-text-wrap ion-text-right">{{this.scheduleEvent.employee.appUser.firstName}}</ion-label>
+  </ion-item>
+
+  <ion-item >
+    <ion-label class="ion-text-left">Lesson name:</ion-label>
+    <ion-label class="ion-text-wrap ion-text-right">{{this.scheduleEvent.lesson.name}}</ion-label>
+  </ion-item>
+
+    <ion-button color="success" class="ion-float-right" style="margin-left:2%; margin-right:10%; width:55%;" (click)="confirmChanges()">Add to Cart</ion-button>
+    <ion-button color="light" class="ion-float-left" style="margin-left:10%;width: 20%;" (click)="this.global.dismissModal()">Return</ion-button>
+
+</ion-content>

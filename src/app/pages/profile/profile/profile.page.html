@@ -1,0 +1,325 @@
+<ion-header>
+  <ion-toolbar mode="ios">
+    <!--Menu toggle button that will display the menu-->
+      <ion-buttons slot="start">
+        <ion-menu-button menu="mainMenu"></ion-menu-button>
+      </ion-buttons>
+      <ion-title slot="">My Profile</ion-title>
+      <ion-button slot="end" (click)="cartService.openCart()" fill="clear">
+        <ion-icon slot="end" name="cart"></ion-icon>
+      </ion-button>
+      <img src="../../assets/BSC.png" width="80px" height="80px" alt="logo" slot="end">
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<br/>
+
+<!-- client -->
+<div *ngIf="client">
+  <!-- update form -->
+  <div class="ion-padding">
+    <ion-card class="centerLogin" >
+      <ion-card-content>
+
+        <div class="ion-text-center">
+          <h1 style="font-family: inherit; border:1px">Update Information</h1>
+        </div>
+        <br/>
+
+        <form #personalForm="ngForm"  (ngSubmit)="onPersonalSubmit(personalForm)">
+          <div padding>
+
+              <ion-label>
+                <h2>Profile Photo:</h2>
+              </ion-label>
+              <ion-input 
+                type="file" 
+                accept="image/png, image/jpeg"
+                name="photo" 
+                ngModel 
+                #photo="ngModel" 
+                (change)="addPhoto($event)"></ion-input>
+              <ion-img *ngIf="showImage" src="{{imgSrc}}"></ion-img>
+              <p *ngIf="!showImage" class="ion-text-start text-center">No Profile image</p>
+              
+              <ion-button *ngIf="showImage && uploadPhoto" color="danger" (click)="removePhoto()">Use Original</ion-button>
+
+            <ion-item>
+              <ion-icon name="person" slot="start" color="#282828"></ion-icon>
+              <ion-input 
+              type="text" 
+              name="firstName" 
+              ngModel 
+              #firstName="ngModel" 
+              placeholder="First Name" 
+              required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-icon name="person" slot="start" color="#282828"></ion-icon>
+              <ion-input 
+              type="text" 
+              name="lastName" 
+              ngModel 
+              #lastName="ngModel" 
+              placeholder="Last Name" 
+              required></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <ion-icon name="apps-outline" slot="start" color="#282828"></ion-icon>
+              <ion-select ngModel #TitleId="ngModel" placeholder="Title" name="TitleId" type="text" id="TitleId" required>
+                  <ion-select-option *ngFor="let title of titleList" value="{{title.titleID}},{{title.description}}">{{ title.description }}</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item>
+              <ion-icon name="mail" slot="start" color="#282828"></ion-icon>
+              <ion-input 
+              type="text" 
+              name="email" 
+              ngModel 
+              #email="ngModel" 
+              placeholder="Email Address"  
+              required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-icon name="mail" slot="start" color="#282828"></ion-icon>
+              <ion-input 
+              type="date" 
+              name="dob" 
+              ngModel 
+              #dob="ngModel" 
+              required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-icon name="call" slot="start" color="#282828"></ion-icon>
+              <ion-input 
+              type="text" 
+              name="number" 
+              ngModel 
+              #number="ngModel" 
+              placeholder="Contact Number" 
+              minlength="10"
+              maxlength="10"
+              required></ion-input>
+            </ion-item>
+
+            <br/>
+            <ion-button *ngIf="!isLoading" expand="block" shape="round" type="submit" [disabled]="!personalForm.valid">Save</ion-button>
+            <div class="ion-text-center" *ngIf="isLoading">
+              <ion-button shape="round">
+                <ion-spinner name="circles"></ion-spinner>
+              </ion-button>   
+            </div> 
+          </div>  
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div class="ion-padding" slot="content">
+    <ion-card>
+      <ion-card-content>
+        <div class="ion-text-center">
+          <h1 style="font-family: inherit; border:1px">Indemnity Form</h1>
+        </div>
+        <br/>
+        <div class="pdf">
+            <ion-item *ngIf="indemnityFlag">
+              <pdf-viewer [src]="indemnitySrc"
+                        [render-text]="true"
+                        [original-size]="false"
+                        ></pdf-viewer>
+            </ion-item>
+            <div *ngIf="!indemnityFlag && client && !loading">
+              <input id="ind" #ind type="file" (change)="uploadIndemnity($event)" accept="application/pdf" />
+              <ion-button (click)="downloadPdf()">Download Indemnity Form</ion-button>
+              <ion-button (click)="ind.click()">Upload Signed Indemnity Form</ion-button>
+              <br />
+            </div>
+          </div>
+      </ion-card-content>
+    </ion-card>
+    
+  </div> 
+</div>
+
+
+<!-- employee -->
+<div *ngIf="!client && !loading" class="ion-padding">
+  <ion-card>
+    <ion-item> 
+      <ion-label>
+        <h2>Profile Photo:</h2>
+        <ion-img *ngIf="showImage" src="{{photo}}"></ion-img>
+        <p *ngIf="!showImage" class="ion-text-start">No Profile image</p>
+      </ion-label>
+    </ion-item>
+  
+    <ion-item> 
+      <ion-label>
+        <h2>Name:</h2>
+        <p class="ion-text-start">{{firstName}}</p>
+      </ion-label>
+    </ion-item>
+  
+    <ion-item> 
+      <ion-label>
+        <h2>Surname:</h2>
+        <p class="ion-text-start">{{lastName}}</p>
+      </ion-label>
+    </ion-item>
+  
+    <ion-item > 
+      <ion-label>
+        <h2>ID Number:</h2>
+        <p class="ion-text-start">{{IDNumber}}</p>
+      </ion-label>
+    </ion-item>
+  
+    <ion-item > 
+      <ion-label>
+        <h2>Email:</h2>
+        <p class="ion-text-start">{{email}}</p>
+      </ion-label>
+    </ion-item>
+  
+    <ion-item > 
+      <ion-label>
+        <h2>Phone Number:</h2>
+        <p class="ion-text-start">{{phone}}</p>
+      </ion-label>
+    </ion-item>
+  
+    <ion-item > 
+      <ion-label>
+        <h2>Title:</h2>
+        <p class="ion-text-start">{{title.description}}</p>
+      </ion-label>
+    </ion-item>
+  
+    <ion-item > 
+      <ion-label>
+        <h2>Contract:</h2>
+          <pdf-viewer [src]="contractSrc"
+                    [render-text]="true"
+                    [original-size]="false"
+                    ></pdf-viewer>
+      </ion-label>
+    </ion-item>
+  </ion-card>
+</div>
+
+<div class="ion-padding" *ngIf="!loading">
+  <ion-card>
+    <ion-card-content>
+      <div class="ion-text-center">
+        <h1 style="font-family: inherit; border:1px">Change Password</h1>
+      </div>
+      <BR/>
+      <form #logForm="ngForm" (ngSubmit)="changePassword(logForm)">
+
+        <div padding>
+
+          <ion-item>
+            <ion-icon name="key" slot="start" color="#282828"></ion-icon>
+            <ion-icon [name]="old ? 'eye-outline':'eye-off-outline'" slot="end" color="#282828" (click)="oldToggle()"></ion-icon>
+            <ion-input [type]="old ? 'password' : 'text'" name="oldpassword" ngModel #oldpassControl="ngModel" placeholder="Current Password" required minlength="8"></ion-input>
+          </ion-item>
+          <ion-text color="danger" *ngIf="!oldpassControl.valid && oldpassControl.touched">
+            <p>Old should be minimum of 8 characters</p>
+          </ion-text>
+
+          <ion-item>
+            <ion-icon name="key" slot="start" color="#282828"></ion-icon>
+            <ion-icon [name]="n1 ? 'eye-outline':'eye-off-outline'" slot="end" color="#282828" (click)="n1Toggle()"></ion-icon>
+            <ion-input 
+            [type]="n1 ? 'password' : 'text'"
+            name="newpassword" 
+            ngModel 
+            #passCtrl="ngModel" 
+            placeholder="Password" 
+            required 
+            minlength="8"></ion-input>
+          </ion-item>
+          <ion-text color="danger" *ngIf="!passCtrl.valid && passCtrl.touched">
+            <p>New password should be minimum of 8 characters</p>
+          </ion-text>
+
+          <div>
+            <ion-item>
+              <ion-icon name="key" slot="start" color="#282828"></ion-icon>
+              <ion-icon [name]="n2 ? 'eye-outline':'eye-off-outline'" slot="end" color="#282828" (click)="n2Toggle()"></ion-icon>
+              <ion-input 
+              [type]="n2 ? 'password' : 'text'"
+              name="cnewpassword" 
+              ngModel 
+              #c_passCtrl="ngModel" 
+              placeholder="Confirm Password" 
+              required 
+              minlength="8"></ion-input>
+            </ion-item>
+            <ion-text color="danger" *ngIf="!c_passCtrl.valid && c_passCtrl.touched">
+              <p>Confirm Password should be minimum of 8 characters</p>
+            </ion-text>
+            <ion-text color="danger" *ngIf="c_passCtrl.valid && c_passCtrl.value !== passCtrl.value">
+              <p>Password entered do not match.</p>
+            </ion-text>
+          
+          </div>
+
+          
+        </div>
+
+        <div>
+
+          <br/>
+          
+          <ion-button [disabled]="!logForm.valid" *ngIf="!isLoggedin" expand="block" shape="round" type="submit">Change Password</ion-button>
+          
+          <br/>
+          <ion-text color="danger" align="center" *ngIf="fail">
+            <p>Incorrect old password.</p>
+            <br />
+          </ion-text>
+          <ion-text color="success" align="center" *ngIf="success">
+            <p>Password updated successfully.</p>
+            <br />
+          </ion-text>
+
+        </div>  
+
+      </form>
+
+    </ion-card-content>
+  </ion-card>
+</div>
+  
+
+<!-- <div class="pdf">
+  <ion-item *ngIf="indemnityFlag">
+    <pdf-viewer [src]="indemnitySrc"
+              [render-text]="true"
+              [original-size]="false"
+              ></pdf-viewer>
+  </ion-item>
+
+  <div *ngIf="!indemnityFlag && client && !loading">
+    <input id="ind" #ind type="file" (change)="uploadIndemnity($event)" accept="application/pdf" />
+    <ion-button (click)="ind.click()">+ Add Indemnity</ion-button>
+    <br />
+  </div>
+
+  <ion-item *ngIf="contractFlag">
+    <pdf-viewer [src]="contractSrc"
+              [render-text]="true"
+              [original-size]="false"
+              ></pdf-viewer>
+  </ion-item>
+</div> -->
+
+</ion-content>

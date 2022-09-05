@@ -1,0 +1,44 @@
+<ion-content>
+  <br/>
+  <!--Searchbar [(ngModel)] is used to bind the searchTerm to the class, to be called when filtering.-->
+  <ion-searchbar expand="block" placeholder='Search Booking...' [(ngModel)]="filter"
+    animated="true" debounce="200"></ion-searchbar>
+
+    <br/>
+  <br>
+  <ng-container *ngIf="!isLoading">
+    <ion-grid *ngFor="let booking of this.myBookingList | filter:filter, let i = index">
+      <ion-list>
+        <h2 class="ion-text-center">Booking placed on: {{booking.date | date:'y, MMM d, h:mm a'}}</h2> <br/>
+        <ion-item-sliding *ngFor="let ba of booking.bookingAttendance">
+          <ion-item button (click)="bookingService.viewMyBookingInfoModal(booking,ba)">
+            <ion-label>
+              <h2>{{ba.schedule.venue.name}}</h2> <br/>
+              <p>
+                Event Date:  {{ba.schedule.startDateTime | date:'y, MMM d, h:mm a' }} - {{ba.schedule.endDateTime | date:'h:mm a' }}<br/>
+                Price: {{ba.schedule.bookingPriceHistory[ba.schedule.bookingPriceHistory.length-1].amount | currency: 'ZAR'}} <br/>
+                Attended: {{ba.attended}}
+              </p>
+            </ion-label>
+            <ion-icon name="chevron-back-outline" size="small"></ion-icon>
+          </ion-item>
+          <ion-item-options side="end" >
+            <ion-item-option color="danger" (click)="bookingService.cancelMyBookingModal(booking,ba)">Cancel booking<ion-icon name="trash" size="large"></ion-icon></ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+
+    </ion-grid>
+    <br *ngFor="let booking of this.myBookingList">
+    <br *ngFor="let booking of this.myBookingList">
+  </ng-container>
+
+  <ion-text id="noRes" *ngIf="!isloading && noresults">
+    <h1>No Results</h1>
+  </ion-text>
+
+
+  <div class="ion-text-center " *ngIf="isLoading">
+    <ion-spinner name="circles"></ion-spinner>
+  </div>
+</ion-content>

@@ -1,0 +1,18 @@
+<ion-item>
+  <!-- <ion-thumbnail slot="start">
+    <img [src]="item?.cover ? item.cover : 'assets/imgs/1.jpg'" />
+  </ion-thumbnail> -->
+  <ion-label>
+    {{item?.name}}
+    <p class="ion-text-wrap">{{item?.desc}}</p>
+    <ion-text><p>₹{{item?.price | currency: 'ZAR'}}</p></ion-text>
+  </ion-label>
+  <ion-row *ngIf="!item?.quantityChange || item?.quantityChange <= 0" (click)="quantityPlus(saleItem)">
+    <ion-text class="add" color="success">Add</ion-text>
+  </ion-row>
+  <ion-row *ngIf="item?.quantityChange > 0">
+    <ion-icon color="success" name="remove-outline" (click)="quantityMinus(saleItem)"></ion-icon>
+    <ion-text class="ion-text-center quantityChange" color="success">{{item?.quantity}}</ion-text>
+    <ion-icon color="success" name="add-outline" (click)="quantityPlus()"></ion-icon>
+  </ion-row>
+</ion-item>

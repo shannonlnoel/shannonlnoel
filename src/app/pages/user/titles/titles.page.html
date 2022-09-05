@@ -1,0 +1,52 @@
+<ion-content>
+<br/>
+  <!--Searchbar (must make function to search)-->
+  <ion-searchbar expand="block" placeholder='Search Titles...' [(ngModel)]="filter"
+    animated="true" debounce="200"></ion-searchbar>
+    <br/>
+  <div class="ion-text-center">
+    <ion-button color="success" (click)="titleService.addTitleInfoModal()">
+      Add Title
+    </ion-button>
+  </div>
+  <br/>
+
+  <ion-grid *ngIf="!isLoading">
+    <ion-list *ngFor="let title of titleList | filter:filter, let i = index"> 
+      <ion-item-sliding>
+        <!-- Sending through the title object to the title service, to be viewed in the modal -->
+        <ion-item button (click)="titleService.viewTitleInfoModal(title)">
+          <ion-label>
+            <h1>{{title.description}}</h1> <br/> 
+          </ion-label>
+          <ion-icon name="chevron-back-outline" size="small"></ion-icon>
+        </ion-item>
+        <ion-item-options side="end" >
+          <ion-item-option color="secondary" (click)="titleService.updateTitleInfoModal(title)">Update<ion-icon name="refresh" size="large"></ion-icon></ion-item-option>
+          <ion-item-option color="danger" (click)="titleService.deleteTitleInfoModal(title)">Delete<ion-icon name="trash" size="large"></ion-icon></ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </ion-grid>   
+
+  <div class="ion-text-center " *ngIf="isLoading">
+    <ion-spinner name="circles"></ion-spinner>
+  </div>
+
+  <!-- <div style="width:40%;margin-left:30%;margin-right: 30%;" class="ion-text-center">
+    <ion-card>
+      <ion-card-header>
+        <img src="../../assets/NoSearch.png" style="width: 40%;">
+        <h1><strong>Sorry! No Results Found :( </strong></h1>
+      </ion-card-header>
+      <ion-card-content>
+        <br/>
+        <h3>Your search for " " did not return any results.</h3>
+        <h3>Please check your spelling or try a different search criteria. </h3>
+        <br/>
+      </ion-card-content>
+    </ion-card>
+  </div> -->
+
+</ion-content>
+

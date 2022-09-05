@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Exercise Category Associated with Exercise/s</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="tertiary" (click)="this.global.dismissModal()"><ion-icon name="close-outline" size="large"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <br/>
+  <div class="ion-text-center">
+      <p style="font-size:large; color: white;margin-left: 10%;margin-right: 10%;">
+          The {{exerciseCategory.name}} exercise category cannot be deleted because the following exercise/s are associated with it
+      </p>
+
+      <ion-list>
+        <ion-item *ngFor="let item of exerciseCategory.exercises">
+          <ion-label class="ion-text-center">{{item['name']}}</ion-label>
+        </ion-item>
+      </ion-list>
+  </div>
+
+  <ion-button color="light" class="ion-float-right" style="margin-right:10%;width:30% " (click)="this.global.dismissModal()">Return</ion-button>
+</ion-content>

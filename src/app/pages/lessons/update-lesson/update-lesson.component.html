@@ -1,0 +1,106 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Update Lesson</ion-title> <!--#TODO CHECK THE NAME HERE-->
+    <ion-buttons slot="end">
+      <ion-button color="tertiary" (click)="dismissModal()"><ion-icon name="close-outline" size="large"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <br />
+  <form [formGroup]="cLessonForm" (ngSubmit)="submitForm()">
+
+    <br/>
+    <div class="ion-text-center">
+      <p style="font-size:large">Please update the lesson information below.</p>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating">Name:</ion-label>
+      <ion-input formControlName="lessonName" type="text" id="lessonName"></ion-input>
+      <br />
+    </ion-item>
+    <span class="error ion-padding" *ngIf="errorControl.lessonName.errors?.required && cLessonForm.get('lessonName').touched">
+      Lesson name is required.
+      <br />
+    </span>
+
+    <!-- employee for the lesson -->
+    <ion-item>
+      <ion-label position="floating">Trainer:</ion-label>
+
+      <!-- POPULATING THE SELECT -->
+      <!-- add a # to the ion-select, i.e., #emp bellow: -->
+      <ion-select #emp (ionChange)="setImage(emp)" formControlName="lessonEmployee" type="text" required="" id="lessonEmployee" >
+          <ion-select-option *ngFor="let employee of employees" value="{{getEmpValue(employee)}},{{getEmpName(employee)}}">{{getEmpName(employee)}}</ion-select-option>
+      </ion-select>
+
+
+      <br/>
+    </ion-item> 
+
+    <ion-img *ngIf="showImage" src="{{imgSrc}}"></ion-img>
+
+    <!-- exercise choosing system -->
+    <!-- <ion-item> -->
+      <br />
+      <ion-label id="exe" position="floating">Update Exercises:</ion-label>
+    <!-- </ion-item> -->
+    
+    <div *ngFor="let exercise of exercises">
+      <br />
+        <div class="center">
+          <div class="row width-80">
+
+            <div class="w-100 evenrow"> <!-- for selects -->
+  
+              {{exercise.displaycount}}
+  
+              <div class="w-100"> <!-- select for category -->
+                <!-- this is rendered from the oroginal, and on change pass the id of the obj and the category to set it to -->
+                <ion-select id="parent{{exercise.id}}" (ionChange)="parentDropDownChange(exercise, $event)" placeholder="Category" type="text">
+                  <ion-select-option *ngFor="let category of categories" value="{{category.exerciseCategoryID}},{{category.name}}">{{ category.name }}</ion-select-option>
+                </ion-select>
+  
+              </div>
+  
+              <div class="w-100"> <!-- select for exercise -->
+                <ion-select (ionChange)="setExercisePostID(exercise, $event)" id="child{{exercise.id}}" placeholder="Exercise" type="text">
+                  <ion-select-option *ngFor="let exe of exercise.exercise" value="{{exe.exerciseID}},{{exe.name}}">{{exe.name}}</ion-select-option>
+                </ion-select>
+  
+              </div>
+  
+            </div>
+  
+            <div class="deletebutton"> <!-- remove button -->
+              <ion-button (click)="removeExerciseToForm(exercise)" color="danger">-</ion-button>
+            </div>
+  
+          </div>
+        </div>
+    </div>
+
+  <!-- TRY BIND TO MANY INPUTS WITH ONE CONTROL -->
+
+    <ion-button (click)="addExerciseToForm()" class="addbutton" color="primary">+</ion-button>
+
+
+    <input class="hide" type="hidden" formControlName="exercises" id="exercises">
+
+    <!-- buttons for form -->
+    <div class="center">
+      <ion-row class="width-80">
+        <ion-col>
+          <ion-button color="light" (click)="dismissModal()">Cancel</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="submitForm()" color="secondary" [disabled]="cLessonForm.invalid || !validExercises">Update Lesson</ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
+
+  </form>
+
+</ion-content>

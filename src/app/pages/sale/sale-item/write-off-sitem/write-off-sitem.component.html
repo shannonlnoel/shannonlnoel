@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Write-Off Sale Item</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="tertiary" (click)="dismissModal()"><ion-icon name="close-outline" size="large"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <br />
+  <form [formGroup]="cWriteOffForm" (ngSubmit)="submitForm()">
+
+    <br/>
+    <div class="ion-text-center">
+      <p style="font-size:large">Please fill in the write-off information below.</p>
+    </div>
+
+    <!-- employee for the lesson -->
+    <ion-item>
+      <ion-label position="floating">Employee:</ion-label>
+      <ion-select formControlName="itemSEmployee" type="text" required="" id="itemSEmployee" >
+        <ng-container *ngFor="let e of this.employeeDropDown">
+          <ion-select-option value="{{getEmpValue(e)}},{{getEmpName(e)}}">{{ getEmpName(e) }}</ion-select-option>
+        </ng-container>
+      </ion-select>
+      <br/>
+    </ion-item>
+    <span class="error ion-padding" *ngIf="errorControl.itemSReason.errors?.required && cWriteOffForm.get('itemSEmployee').touched">
+    </span>
+
+    <!-- exercise choosing system -->
+    
+    <ion-item>
+      <ion-label position="floating">Reason:</ion-label>
+      <ion-select formControlName="itemSReason" type="text" required="" id="itemSReason" >
+        <ng-container *ngFor="let r of this.reasonDropDown">
+          <ion-select-option value="{{r.writeOffReasonID}},{{ r.description }}">{{ r.description }}</ion-select-option>
+        </ng-container>
+      </ion-select>
+      <br/>
+    </ion-item>
+    <span class="error ion-padding" *ngIf="errorControl.itemSReason.errors?.required && cWriteOffForm.get('itemSReason').touched">
+    </span>
+  <!-- TRY BIND TO MANY INPUTS WITH ONE CONTROL -->
+
+  <ion-item>
+    <ion-label position="floating">Quantity:</ion-label>
+    <ion-input formControlName="itemQuantity" type="number" required="" id="itemQuantity" max="{{saleItem.quantityOnHand}}"></ion-input>
+    <br/>
+  </ion-item>
+  <span class="error ion-padding" *ngIf="errorControl.itemQuantity.errors?.required && cWriteOffForm.get('itemQuantity').touched">
+   Quantity is required <br/>
+  </span>
+
+    <!-- buttons for form -->
+    <div class="center">
+      <ion-row class="width-80">
+        <ion-col>
+          <ion-button color="light" (click)="dismissModal()">Cancel</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="submitForm()" color="success" [disabled]="cWriteOffForm.invalid">Create Write-Off</ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
+    
+  </form>
+</ion-content>

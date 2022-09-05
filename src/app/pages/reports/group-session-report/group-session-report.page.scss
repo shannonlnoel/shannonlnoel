@@ -1,0 +1,28 @@
+.cardFadeUp {
+  -webkit-animation: fadeIn 600ms;
+  animation: fadeIn 600ms;
+  -webkit-animation: fadeInUp 400ms ease;
+  animation: fadeInUp 400ms ease;
+}
+
+
+#noRes {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.lightone {
+  margin-top: 4px !important;
+  opacity: 0.6;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+}
+
+.lighttwo {
+  margin-top: 1px !important;
+  opacity: 0.6;
+  font-size: 12px;
+  letter-spacing: 1px;
+}

@@ -1,0 +1,36 @@
+text-center {
+    text-align: center;
+}
+
+.w-100 {
+    width: 100% !important;
+}
+
+.center {
+    justify-content: center;
+}
+
+.flex {
+    display: flex;
+}
+
+canvas {
+    max-width: 70vw !important;
+    min-width: 270px;
+    max-height: 62vh !important;
+    text-align: center;
+}
+
+.child {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+.parent {
+    display: inherit;
+}
+
+.black {
+    color: black;
+}

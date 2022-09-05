@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>New Booking Type Details</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="tertiary" (click)="this.global.dismissModal()"><ion-icon name="close-outline" size="large"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="cBookingTypeForm" (ngSubmit)="submitForm()">
+    <br/>
+    <div class="ion-text-center">
+      <p style="font-size:large">Please fill in the booking type information below</p>
+    </div>
+    <ion-item>
+      <ion-label position="floating">Name:</ion-label>
+      <ion-input formControlName="bookingTypeName" type="text" required="" id="bookingTypeName"></ion-input>
+      <br/>
+    </ion-item>
+    <span class="error ion-padding" *ngIf="errorControl.bookingTypeName.errors?.required && cBookingTypeForm.get('bookingTypeName').touched">
+      Name is required<br/>
+    </span>
+    <ion-item>
+      <ion-label position="floating">Description:</ion-label>
+      <ion-textarea formControlName="bookingTypeDescription" type="text" required="" id="bookingTypeDescription"></ion-textarea>
+      <br/>
+    </ion-item>
+    <span class="error ion-padding" *ngIf="errorControl.bookingTypeDescription.errors?.required && cBookingTypeForm.get('bookingTypeDescription').touched">
+      Description is required<br/>
+    </span>
+
+    <ion-item>
+      <ion-label slot="start" id="clrSelector">Colour: </ion-label>
+      <input formControlName="bookingTypeColour" type="color" required="" id="bookingTypeColour" slot="end"/>
+
+      <br/>
+    </ion-item>
+    <span class="error ion-padding" *ngIf="errorControl.bookingTypeColour.errors?.required && cBookingTypeForm.get('bookingTypeColour').touched">
+      Colour is required<br/>
+    </span>
+    <ion-item>
+      <ion-label position="floating">Capacity:</ion-label>
+      <ion-input formControlName="bookingTypeCapacity" type="number" required="" id="bookingTypeCapacity"></ion-input>
+      <br/>
+    </ion-item>
+    <span class="error ion-padding" *ngIf="errorControl.bookingTypeCapacity.errors?.required && cBookingTypeForm.get('bookingTypeCapacity').touched">
+      Capacity is required<br/>
+    </span>
+    <span class="error ion-padding" *ngIf="errorControl.bookingTypeCapacity.errors?.min">
+      Capacity must be greater than 0 <br/>
+     </span>
+
+
+    <br>
+    <br>
+    <ion-button type="submit" color="success" [disabled]="!cBookingTypeForm.valid" class="ion-float-right" style="margin-left:2%; margin-right:10%; width:55%;">Create Booking Type</ion-button>
+    <ion-button color="light" class="ion-float-left" style="margin-left:10%;width: 20%;" (click)="this.global.dismissModal()">Cancel</ion-button>
+
+  </form>
+</ion-content>

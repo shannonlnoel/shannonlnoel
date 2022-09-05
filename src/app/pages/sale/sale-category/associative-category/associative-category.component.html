@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Sale Category Associated with Sale Item/s</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="tertiary" (click)="this.global.dismissModal()"><ion-icon name="close-outline" size="large"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <br/>
+  <div class="ion-text-center">
+      <p style="font-size:large; color: white;margin-left: 10%;margin-right: 10%;">
+          The {{saleCategory.name}} sale category cannot be deleted because the following sale item/s are associated with it
+      </p>
+
+      <ion-list> 
+        <ion-item *ngFor="let item of saleCategory.saleItem">
+          <!-- <ion-label class="ion-text-left">Sale Item: </ion-label> -->
+          <ion-label class="ion-text-center">{{item.name}}</ion-label>
+        </ion-item>
+      </ion-list>
+  </div>
+
+  <ion-button color="light" class="ion-float-right" style="margin-right:10%;width:30% " (click)="this.global.dismissModal()">Return</ion-button>
+</ion-content>

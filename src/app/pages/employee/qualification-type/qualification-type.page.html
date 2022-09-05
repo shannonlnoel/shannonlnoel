@@ -1,0 +1,38 @@
+
+
+<ion-content>
+  <br/>
+  <ion-searchbar showCancelButton="focus" expand="block" placeholder='Search Qualification Type...' [(ngModel)]="filter"
+    animated="true" debounce="200"></ion-searchbar>
+
+    <br/>
+  <div class="ion-text-center">
+    <ion-button color="success" (click)="qualificationService.addQualificationTypeInfoModal()">
+      Add Qualification Type
+    </ion-button>
+  </div>
+  <br/>
+  <ion-grid *ngIf="!isLoading">
+    <ion-list *ngFor="let qualificationType of qualificationTypeList | filter:filter, let i = index"> 
+      <ion-item-sliding>
+        <!-- Sending through the venue object to the venue service, to be viewed in the modal -->
+        <ion-item button (click)="qualificationService.viewQualificationTypeInfoModal(qualificationType)">
+          <ion-label>
+            <h1>{{qualificationType.name}}</h1> <br/>
+          </ion-label>
+          <ion-icon name="chevron-back-outline" size="small"></ion-icon>
+        </ion-item>
+        <ion-item-options side="end" >
+          <ion-item-option color="secondary" (click)="qualificationService.updateQualificationTypeInfoModal(qualificationType)">Update<ion-icon name="refresh" size="large"></ion-icon></ion-item-option>
+          <ion-item-option color="danger" (click)="qualificationService.deleteQualificationTypeInfoModal(qualificationType)">Delete<ion-icon name="trash" size="large"></ion-icon></ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </ion-grid>   
+
+  <div class="ion-text-center " *ngIf="isLoading">
+    <ion-spinner name="circles"></ion-spinner>
+  </div>
+</ion-content>
+
+

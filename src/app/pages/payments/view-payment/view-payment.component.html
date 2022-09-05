@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>View "Payment #{{ payment.paymentID }}"</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="tertiary" (click)="this.global.dismissModal()"><ion-icon name="close-outline" size="large"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <br/>
+  <div class="ion-text-center">
+    <p style="font-size:large; color: white;margin-left: 10%;margin-right: 10%;">The following information corresponds with the selected Payment</p>
+    <ion-item >
+      <ion-label class="ion-text-left">Date:</ion-label>
+      <ion-label class="ion-text-right">{{ getDate() }}</ion-label>
+    </ion-item>
+    <ion-item >
+      <ion-label class="ion-text-left">Total:</ion-label>
+      <ion-label class="ion-text-wrap ion-text-right">R{{ payment.total }}.00</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-left">Sale Items:</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <br>
+      <ion-label>
+        <ion-row>
+          <ion-col>Photo</ion-col>
+          <ion-col>Name</ion-col>
+          <ion-col>Price (R)</ion-col>
+          <ion-col>Quantity</ion-col>
+          <ion-col>Amount (R)</ion-col>
+        </ion-row>
+        <br>
+        <ion-row *ngFor="let item of payment.sale.saleLine">
+          <ion-col>
+            <img [src]="this.global.createImg(item.saleItem.photo)">
+          </ion-col>
+          <ion-col>
+            {{ item.saleItem.name }}
+          </ion-col>
+          <ion-col>
+            {{ item.saleItem.priceHistory[0].saleAmount }}.00
+          </ion-col>
+          <ion-col>
+            {{ item.quantity }}
+          </ion-col>
+          <ion-col>
+            {{ item.quantity * item.saleItem.priceHistory[0].saleAmount }}
+          </ion-col>
+        </ion-row>
+
+      </ion-label>
+    </ion-item>
+
+    <br/><br/>
+  </div>
+  <br>
+  <ion-button color="light" class="ion-float-right" style="margin-right:10%;width:30% " (click)="this.global.dismissModal()">Return</ion-button>
+</ion-content>

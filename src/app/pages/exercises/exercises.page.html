@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar mode="ios">
+    <!--Menu toggle button that will display the menu-->
+      <ion-buttons slot="start">
+        <ion-menu-button menu="mainMenu"></ion-menu-button>
+      </ion-buttons>
+      <ion-title slot="">Exercises</ion-title>
+      <img src="../../assets/BSC.png" width="80px" height="80px" alt="logo" slot="end">
+      <!--Can we change this dynamically when switching between tabs?-->
+    <!-- </ion-item> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-tabs>
+    <ion-tab-bar slot="top" style="color: #E0E0E0;">
+      <ion-tab-button tab="exercise-page">
+        <ion-label>Exercise</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="exercise-category">
+        <ion-label>Exercise Category</ion-label>
+      </ion-tab-button>
+
+    </ion-tab-bar>
+  </ion-tabs>
+
+</ion-content>
+<!-- <ion-footer style="margin-left:20px;margin-bottom: 10px;">
+  Bester Strength and Conditioning | info@besterstrengthandconditioning.co.za
+  <br>
+</ion-footer> -->

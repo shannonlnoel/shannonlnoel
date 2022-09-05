@@ -1,0 +1,83 @@
+ion-title {
+    font-family: 'Montserrat', sans-serif;;
+    font-weight: 500;
+}
+
+ion-item {
+    font-size: large;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#exe {
+    font-size: large;
+    margin-left: 13%;
+    margin-right: 10%;
+}
+
+ion-button {
+    margin-bottom: 8%;
+    margin-top: 2%;
+    width: 100% !important;
+}
+
+.row {
+    width: 100% !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.evenrow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.w-100 {
+    width: 100% !important;
+}
+
+.center {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.deletebutton {
+    width: 6% !important;
+    // margin-right: 8% !important;
+}
+
+.addbutton {
+    width: 10% !important;
+    margin-left: 45%;
+    margin-right: 45%;
+    padding: 0px;
+}
+
+.hide {
+    height: 0px;
+    width: 0px;
+}
+
+.width-80 {
+    width: 80% !important;
+    justify-self: center;
+}
+
+span {
+    color : tertiary;
+    font-size: large;
+    margin-left: 12%;  
+}
+
+ion-img {
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    height: 200px;
+}

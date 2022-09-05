@@ -1,0 +1,36 @@
+<ion-content>
+  <br/>
+  <!--Searchbar (must make function to search)-->
+  <ion-searchbar expand="block" placeholder='Search Booking Type...' [(ngModel)]="filter"
+  animated="true" debounce="200"></ion-searchbar>
+  <br/><br/>
+
+  <div class="ion-text-center">
+    <ion-button color="success" style="margin-left:30%;margin-right:30%" (click)="bookingService.addBookingTypeModal()">
+      Add Booking Type
+    </ion-button>
+  </div>
+  <br/>
+
+  <ion-grid *ngIf="!isLoading" >
+    <ion-list *ngFor="let bt of bookingTypeList | filter:filter, let i = index">
+      <ion-item-sliding >
+        <ion-item button (click)="bookingService.viewBookingTypeModal(bt)" >
+          <ion-label style="padding-left:2% ;">
+            <h1>{{bt.name}}</h1>
+            <p style="font-size:large"> {{bt.description}}</p>
+          </ion-label >
+          <ion-icon name="chevron-back-outline" size="small"></ion-icon>
+        </ion-item>
+        <ion-item-options side="end" >
+          <ion-item-option color="secondary" (click)="bookingService.updateBookingTypeModal(bt)">Update<ion-icon name="refresh" size="large"></ion-icon></ion-item-option>
+          <ion-item-option color="danger" (click)="bookingService.deleteBookingTypeModal(bt)">Delete<ion-icon name="trash" size="large"></ion-icon></ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </ion-grid>
+
+  <div class="ion-text-center " *ngIf="isLoading">
+    <ion-spinner name="circles"></ion-spinner>
+  </div>
+</ion-content>

@@ -1,0 +1,19 @@
+<ion-item>
+  <ion-label class="ion-text-wrap">
+    <h3>{{item?.saleItem.name}}</h3>
+  </ion-label>
+  <ion-button shape="round"  class="xc" (click)="quantityMinus()">
+    <ion-icon  name="remove-outline"></ion-icon>
+  </ion-button>
+
+  <ion-text class="xc ion-text-center quantity" color="primary">{{item?.quantity}}</ion-text>
+
+  <ion-button shape="round" class="xc" (click)="quantityPlus()">
+    <ion-icon name="add-outline"></ion-icon>
+  </ion-button>
+
+
+  <ion-label slot="end" color="dark" class="ion-text-wrap">
+    {{item?.subTotalPrice | currency: 'ZAR'}}
+  </ion-label>
+</ion-item>

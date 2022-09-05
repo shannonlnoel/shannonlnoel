@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>New Qualification Details</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="tertiary" (click)="this.global.dismissModal()"><ion-icon name="close-outline" size="large"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <!--<form #cQTypeForm="ngForm" (ngSubmit)="onSubmit(cQTypeForm)">-->
+  <form [formGroup]="cQualificationForm" (ngSubmit)="submitForm()"> 
+    <br/>
+    <div class="ion-text-center">
+      <p style="font-size:large">Please fill in the qualification information below</p>
+    </div>
+    <ion-item>
+      <ion-label position="floating">Description:</ion-label>
+      <ion-input formControlName="description" type="text" required id="description" ></ion-input>
+      <br/>
+    </ion-item>
+    <span class="error ion-padding" *ngIf="errorControl.description.errors?.required && cQualificationForm.get('description').touched">
+      Description is required<br/>
+    </span>
+    <ion-item>
+      <ion-label position="floating">Qualification Type:</ion-label>
+      <ion-select formControlName="qualificationType" type="text" required="" id="qualificationType" >
+        <ng-container *ngFor="let q of qualificationTypeDropDown">
+          <ion-select-option value="{{q.qualificationTypeID}},{{q.name}}">{{ q.name }}</ion-select-option>
+        </ng-container>
+      </ion-select>
+    </ion-item>
+    <span class="error ion-padding" *ngIf="errorControl.qualificationType.errors?.required && cQualificationForm.get('qualificationType').touched">
+      Qualification Type is required<br/>
+    </span>
+
+    <!-- <pre>{{ qualificationTypeDropDown | json }}</pre> -->
+
+    <br/><br/>
+
+    <ion-button type="submit" color="success" [disabled]="!cQualificationForm.valid" class="ion-float-right" style="margin-left:2%; margin-right:10%; width:55% ;">Create Qualification</ion-button>
+    <ion-button color="light" class="ion-float-left" style="margin-left:10%;width: 20%;" (click)="this.global.dismissModal()">Cancel</ion-button>
+    
+  </form>
+</ion-content>

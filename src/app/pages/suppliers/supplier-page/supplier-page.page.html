@@ -1,0 +1,44 @@
+<ion-content>
+
+  <br/>
+  <ion-searchbar #search (ionClear)="searchSupplier(search.value)" (ionInput)="searchSupplier(search.value)" expand="block" placeholder='Search Supplier...' [(ngModel)]="filter"
+  animated="true" debounce="200"></ion-searchbar>
+  <br/><br/>
+
+  <div class="ion-text-center">
+    <ion-button color="success" style="margin-left:30%;margin-right:30%" (click)="addSupplierInfoModal()"> 
+      Add Supplier
+    </ion-button>
+  </div>
+  <br/> 
+
+  <!-- view all suppliers -->
+  <ion-grid id="cols">
+    <ion-row>
+
+        <ion-col class="cardFadeUp" *ngFor="let supplier of suppliers" id="cols">
+
+          <ion-card class="buttonalign">
+            <div>
+              <ion-card-header>
+                <ion-card-subtitle></ion-card-subtitle>
+                <ion-card-title>{{supplier.name}}</ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                <ion-text><h6 class="lightone">{{supplier.email}}</h6></ion-text>
+                <ion-text><h6 class="lighttwo">{{supplier.cell}}</h6></ion-text>
+              </ion-card-content>
+            </div>
+            <div class="colmaker">
+              <ion-button (click)="viewSupplier(supplier)">View</ion-button>
+              <ion-button color="secondary" (click)="updateSupplier(supplier)">Update</ion-button>
+              <ion-button color="danger" (click)="deleteSupplier(supplier)">Delete</ion-button>
+            </div>
+          </ion-card>
+
+        </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

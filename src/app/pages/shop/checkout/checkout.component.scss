@@ -1,0 +1,64 @@
+.dotStyle {
+    border: 1px solid var(--ion-color-success);
+    padding: 0 0.1rem; // top right bottom left
+    margin-right: 2vw;
+}
+
+ion-item {
+    letter-spacing: 0.5px;
+}
+ion-text {
+    font-size: 1rem;
+    margin-right: 1vw;
+    margin-left: 1vw;
+}
+ion-label {
+    font-size: 1rem;
+}
+ion-row {
+    padding: 0.2rem;
+    width: 8rem;
+    margin-right: 1vw;
+}
+h5 {
+    font-weight: bold;
+}
+
+.quantity {
+    width: 1rem;
+}
+
+.price {
+    width: 6rem;
+}
+
+.xc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fullheight {
+    height: 100%;
+}
+
+.btn-quantity-add{
+    margin-right: 2vw;
+}
+
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    vertical-align: middle;
+    margin-top: 5%;
+  }
+
+  .no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+  }
+

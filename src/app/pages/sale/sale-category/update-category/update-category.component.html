@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Edit Sale Category Details</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="tertiary" (click)="this.global.dismissModal()"><ion-icon name="close-outline" size="large"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="uSaleCategoryForm" (ngSubmit)="submitForm()"> 
+    <br/>
+    <div class="ion-text-center">
+      <p style="font-size:large">Please update the sale category information below</p>
+    </div>
+    <ion-item>
+      <ion-label position="stacked">Name:</ion-label>
+      <ion-input formControlName="categoryName"  type="text" required=""></ion-input>
+      <br/>
+    </ion-item>
+    <span class="error ion-padding" *ngIf="errorControl.categoryName.errors?.required">
+      Name is required
+      <br/>
+    </span>
+
+    <ion-item>
+      <ion-label position="stacked">Description:</ion-label>
+      <ion-textarea class="ion-text-wrap" formControlName="categoryDescription"  type="text" required=""></ion-textarea>
+      <br/>
+    </ion-item>
+    <span class="error ion-padding" *ngIf="errorControl.categoryDescription.errors?.required">
+      Description is required
+      <br/>
+    </span>
+
+    <br><br/>
+    <ion-button type="submit" color="secondary" [disabled]="!uSaleCategoryForm.valid" class="ion-float-right" style="margin-left:2%; margin-right:10%; width:55% ;">Update Sale Category</ion-button>
+    <ion-button color="light" class="ion-float-left" style="margin-left:10%;width: 20%;" (click)="this.global.dismissModal()">Cancel</ion-button>
+  </form>
+</ion-content>

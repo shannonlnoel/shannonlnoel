@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{saleItem.name}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="tertiary" (click)="this.global.dismissModal()"><ion-icon name="close-outline" size="large"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content container="flex-wrap">
+  <div class="ion-text-center">      
+        <img [src]="this.global.createImg(saleItem.photo)" alt="img">
+  </div>
+  <div class="ion-text-left ion-text-wrap text">
+    <h5>Item Description:</h5>
+    <ion-label class="ion-text-wrap">{{saleItem.description}}</ion-label>
+    <br><br>
+    <ion-button class="ion-float-right" style="margin-bottom:3%;width:30% " (click)="quantityPlus(saleItem)">ADD TO CART</ion-button>
+    <br>
+  </div>
+
+</ion-content>

@@ -1,0 +1,107 @@
+.flex {
+    display: flex;
+}
+
+.row {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.col {
+    flex-direction: column;
+}
+
+.vert-c {
+    align-items: center;
+}
+
+.evenly {
+    justify-content: space-evenly;
+}
+
+.around {
+    justify-content: space-around;
+}
+
+.datepicker {
+    width: 340px !important;
+    
+}
+
+.center {
+    justify-content: center;
+}
+
+.padding {
+    padding: 14px !important;
+    border-radius: 14px !important;
+}
+
+.w-100 {
+    width: 100% !important;
+}
+
+.graphback {
+    // background-color: #4a4a4a;
+}
+
+.pad {
+    padding: 15px !important;
+    border-radius: 12px;
+    margin-bottom: 3px;
+    color: black;
+}
+
+.c1 {
+    background-color:rgba(146,157,191, 0.5);
+}
+
+.c2 {
+    background-color: rgba(146,157,191, 0.6);
+}
+
+.c3 {
+    background-color: rgba(146,157,191, 0.7);
+}
+
+.c4 {
+    background-color: rgba(146,157,191, 0.8);
+}
+
+.c5 {
+    background-color: rgba(146,157,191, 0.9);
+}
+
+.lightone {
+    opacity: 0.6;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+}
+
+h1 {
+    margin: 0px !important;
+}
+
+ion-button {
+    border-radius : 10px;
+    --background: #3db3ad;
+}
+
+#noRes {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 99;
+}
+
+canvas {
+    width: 40vw;
+    max-width: 90vw;
+    min-width: 270px;
+    height : auto;
+}
+
+text-center {
+    text-align: center;
+}

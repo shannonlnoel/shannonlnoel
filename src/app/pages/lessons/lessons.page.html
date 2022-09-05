@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar mode="ios">
+    <!--Menu toggle button that will display the menu-->
+      <ion-buttons slot="start">
+        <ion-menu-button menu="mainMenu"></ion-menu-button>
+      </ion-buttons>
+      <ion-title slot="">Lessons</ion-title>
+      <img src="../../assets/BSC.png" width="80px" height="80px" alt="logo" slot="end">
+      <!--Can we change this dynamically when switching between tabs?-->
+    <!-- </ion-item> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-col size="12">
+    <ion-searchbar #search (ionClear)="searchLesson(search.value)" (ionInput)="searchLesson(search.value)" expand="block" placeholder='Search...' cancelButtonText="Close"></ion-searchbar>
+  </ion-col>
+  <div class="ion-text-center">
+    <ion-button color="success" style="margin-left:30%;margin-right:30%" (click)="addLesson()">
+      Add Lesson 
+    </ion-button>
+  </div>
+
+
+      <ion-grid id="cols">
+        <ion-row>
+  
+            <ion-col class="cardFadeUp" *ngFor="let lesson of lessons" id="cols">
+
+              <ion-card class="buttonalign">
+                <div>
+                  <ion-card-header>
+                    <ion-card-subtitle>{{getExeCount(lesson)}} Exercises</ion-card-subtitle>
+                    <ion-card-title>{{lesson.name}}</ion-card-title>
+                  </ion-card-header>
+                  <ion-card-content>
+                    <ion-text><h6 class="lightone">{{lesson.employee.appUser.firstName}} {{lesson.employee.appUser.lastName}}</h6></ion-text>
+                    <ion-text><h6 class="lighttwo">{{lesson.employee.appUser.email}}</h6></ion-text>
+                  </ion-card-content>
+                </div>
+                <div class="colmaker">
+                  <ion-button (click)="viewLesson(lesson)">View</ion-button>
+                  <ion-button color="secondary" (click)="updateLesson(lesson)">Update</ion-button>
+                  <ion-button color="danger" (click)="deleteLesson(lesson)">Delete</ion-button>
+                </div>
+              </ion-card>
+
+            </ion-col>
+    
+        </ion-row>
+      </ion-grid>
+
+
+  <ion-text id="noRes" *ngIf="noresults">
+    <h1>No Results</h1>
+  </ion-text>
+
+</ion-content>

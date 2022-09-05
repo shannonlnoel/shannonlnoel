@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Confirm Refund Reason Details</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="tertiary" (click)="this.global.dismissModal()"><ion-icon name="close-outline" size="large"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <br/>
+  <div class="ion-text-center">
+    <p style="font-size:large">Please confirm the following refund reason information</p>
+  </div>
+
+    <ion-item > 
+      <ion-label class="ion-text-left">Reason:</ion-label>
+      <ion-label class="ion-text-wrap ion-text-right">{{refundReason.description}}</ion-label> 
+    </ion-item>
+    
+    <br/><BR/>
+
+    <ion-button color="success" class="ion-float-right" style="margin-left:2%; margin-right:10%; width:55%;" (click)="confirmChanges(refundReason)">Confirm</ion-button>
+    <ion-button color="light" class="ion-float-left" style="margin-left:10%;width: 20%;" (click)="returnFrom()">Return</ion-button>
+
+</ion-content>

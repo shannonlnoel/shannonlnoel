@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>New Refund Reason Details</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="tertiary" (click)="this.global.dismissModal()"><ion-icon name="close-outline" size="large"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="cRefundReasonForm" (ngSubmit)="submitForm()"> 
+    <br/>
+    <div class="ion-text-center">
+      <p style="font-size:large">Please fill in the refund reason information below</p>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating">Reason:</ion-label>
+      <ion-textarea class="ion-text-wrap" formControlName="refundReason" type="text" required="" id="refundReason" ></ion-textarea>
+      <br/>
+    </ion-item>
+    <span class="error ion-padding" *ngIf="errorControl.refundReason.errors?.required && cRefundReasonForm.get('refundReason').touched">
+      Reason is required<br/>
+    </span>
+    <br>
+    <br>
+    <ion-button type="submit" color="success" [disabled]="!cRefundReasonForm.valid" class="ion-float-right" style="margin-left:2%; margin-right:10%; width:55% ;">Create Refund Reason</ion-button>
+    <ion-button color="light" class="ion-float-left" style="margin-left:10%;width: 20%;" (click)="this.global.dismissModal()">Cancel</ion-button>
+    
+  </form>
+</ion-content>
+
+

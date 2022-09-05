@@ -1,0 +1,55 @@
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+    
+    
+
+ion-card {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .card-title {
+    position: absolute;
+    top: 36%;
+    font-size: 2.0em;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .full-image { 
+    width: 150% !important;
+     height: 100%;
+     -webkit-filter: blur(3px);
+     -moz-filter: blur(3px);
+     -o-filter: blur(3px);
+     -ms-filter: blur(3px);
+     filter: blur(3px);
+     }
+
+  .card-subtitle {
+    position: absolute;
+    top: 43%;
+    width: 100%;
+    color: #fff;
+  }
+
+//   .image-grid{
+//     margin-left: 1%;
+//     margin-right: 5%;
+//   }
+
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    vertical-align: middle;
+  }
+

@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Edit Qualification Type Details</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="tertiary" (click)="this.global.dismissModal()"><ion-icon name="close-outline" size="large"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <br/>
+  <div class="ion-text-center">
+    <p style="font-size:large">Please update the qualification type information below</p>
+  </div>
+
+  <form [formGroup]="uQTypeForm" (ngSubmit)="submitForm()"> 
+    <ion-item>
+      <ion-label position="stacked">Name:</ion-label>
+      <ion-input formControlName="qualificationTypeName"  type="text" required=""></ion-input>
+      <br/>
+    </ion-item>
+    <span class="error ion-padding" *ngIf="errorControl.qualificationTypeName.errors?.required">
+      Name is required
+      <br/>
+    </span>
+
+    <br><br/>
+    <ion-button type="submit" color="secondary" [disabled]="!uQTypeForm.valid" class="ion-float-right" style="margin-left:2%; margin-right:10%; width:55% ;">Update Qualification Type</ion-button>
+    <ion-button color="light" class="ion-float-left" style="margin-left:10%;width: 20%;" (click)="this.global.dismissModal()">Cancel</ion-button>
+  </form>
+</ion-content>

@@ -1,0 +1,143 @@
+<ion-header>
+  <ion-toolbar mode="ios">
+    <!--Menu toggle button that will display the menu-->
+    <ion-buttons slot="start">
+      <ion-menu-button menu="mainMenu"></ion-menu-button>
+    </ion-buttons>
+    <ion-title slot="">Home Page</ion-title>
+    <ion-button slot="end" (click)="cartService.openCart()" fill="clear">
+      <ion-icon slot="end" name="cart"></ion-icon>
+    </ion-button>
+    <img src="../../assets/BSC.png" width="80px" height="80px" alt="logo" slot="end">
+
+    <!--Can we change this dynamically when switching between tabs?-->
+    <!-- </ion-item> 
+      <ion-title slot="">Welcome, Stacey</ion-title>
+      <img src="../../assets/BSC.png" width="80px" height="80px" alt="logo" slot="end">-->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button (click)="pay()">Try Pay with Yoco</ion-button>
+  <ion-grid>
+    <ion-row>
+      <ion-col  class="ion-align-self-start no-padding" sizeLg="3" sizeMd="3" sizeXs="6" class="listMargin">
+        <ion-card>
+          <img src="../../assets/DarkGymHomePhoto.jpg" class=full-image alt="Image"/>
+          <!-- <div class="card-title">São Paulo</div> -->
+          <div class="card-subtitle">
+            <ion-button color="light" size="medium" [routerLink]="['/detail']">View Shop</ion-button>
+          </div>
+        </ion-card>
+      </ion-col>
+      <ion-col class="ion-align-self-start no-padding" sizeLg="3" sizeMd="3" sizeXs="6" class="listMargin">
+        <ion-card>
+          <img src="../../assets/Treadmill.jpg" class="full-image" alt="Image"/>
+          <div class="card-subtitle">
+            <ion-button color="light" size="medium">View Exercise</ion-button>
+          </div>
+        </ion-card>
+      </ion-col>
+      <ion-col class="ion-align-self-start no-padding" sizeLg="3" sizeMd="3" sizeXs="6" class="listMargin">
+        <ion-card>
+          <img src="../../assets/EmployeeHomePage.jpg" class="full-image" alt="Image"/>
+          <div class="card-subtitle">
+            <ion-button color="light" size="medium">View Employees</ion-button>
+          </div>
+      </ion-card>
+      </ion-col>
+      <ion-col class="ion-align-self-start no-padding" sizeLg="3" sizeMd="3" sizeXs="6" class="listMargin">
+        <ion-card>
+          <img src="../../assets/BSC.png" alt="Image"/>
+          <div class="card-title">São Paulo</div>
+          <div class="card-subtitle">41 Listings</div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <ion-content [fullscreen]="true">
+  <ion-grid>
+
+    <br/>
+    <h2>Hey {{username}}, What would you like to do : </h2>
+    
+    <ion-chip>
+      <ion-icon name="folder-open"></ion-icon>
+      <ion-label>View Member Requests</ion-label>
+    </ion-chip>
+
+    <ion-chip>
+      <ion-icon name="document"></ion-icon>
+      <ion-label>View Refund Requests</ion-label>
+    </ion-chip>
+  
+
+    <br/>
+    <h2>Training Sessions for today : </h2>
+
+    <br/>
+    <h2>Update on BSC Statistics : </h2>
+      <ion-card>
+        <ion-col size="12" size-md>
+        <ion-card-title>
+          <br/>
+          Count requests-->
+<!-- 2 -->
+<!-- <br/>
+        </ion-card-title>
+        <ion-card-subtitle>
+          Client(s) requested to upgrade to member
+        </ion-card-subtitle>
+      </ion-col>
+
+      <ion-col size="12" size-md>
+        <ion-card-title>
+          <br/>
+          Count Bookings-->
+<!-- 8 -->
+<!-- <br/>
+        </ion-card-title>
+        <ion-card-subtitle>
+          Booking(s) were made for trainer session(s)
+        </ion-card-subtitle>
+      </ion-col> -->
+
+<!-- <ion-col size="12" size-md>
+          <ion-card-title>
+            <br/>
+            Count checkouts-->
+<!-- 1 -->
+<!-- <br/>
+          </ion-card-title>
+          <ion-card-subtitle>
+            Complete checkout(s)
+          </ion-card-subtitle>
+      </ion-col>
+      
+      </ion-card> -->
+
+<!--   
+</ion-grid> -->
+
+<!-- </ion-content>
+<ion-footer style="margin-left:20px;margin-bottom: 10px;">
+  Bester Strength and Conditioning | info@besterstrengthandconditioning.co.za
+  <br>
+</ion-footer> -->

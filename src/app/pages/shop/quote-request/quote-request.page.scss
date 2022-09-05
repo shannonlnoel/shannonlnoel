@@ -1,0 +1,30 @@
+.div{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+  
+
+  .no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  label {
+    display:inline-block;
+    width:100%;
+    font-weight:bold;
+}
+
+input{
+    float:right; /* shift to right for alignment*/
+    width:80% /* set a width, you can use max-width to limit this as well*/
+}

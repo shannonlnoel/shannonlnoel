@@ -1,0 +1,42 @@
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item >
+      <ion-select placeholder="Select chart view" interface="popover" slot="start" (ionChange)="updateView($event)">
+        <ion-select-option value="yearly">Years</ion-select-option>
+        <ion-select-option value="monthly">Monthly</ion-select-option>
+        <ion-select-option value="bimonth">Bi-monthly</ion-select-option>
+        <ion-select-option value="quarterly">Quarterly</ion-select-option>
+        <ion-select-option value="halfyear">Half-year</ion-select-option>
+      </ion-select>
+      <ion-button slot="end" (click)="download()">
+        Download
+      </ion-button>
+    </ion-item>
+  </ion-list>
+  <div class="flex w-100 center" style="margin:auto" id="htmlData" justify-content-center>
+    <!-- <ion-card>
+      <ion-card-header>
+
+      </ion-card-header>
+      <ion-card-content>
+
+      </ion-card-content>
+    </ion-card> -->
+    <div class="ion-text-center" style="width: 70vw;max-width: 90vw;min-width: 270px;height : auto; margin: auto" justify-content-center >
+      <h1> {{this.rangeTitle}}</h1>
+      <canvas #barCanvas ></canvas>
+
+    </div>
+
+    <!-- <ion-card>
+      <ion-card-header>
+        {{this.categorySelected}}
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #lineCanvas style="width: 40vw;max-width: 90vw;min-width: 270px;height : 20vh;"></canvas>
+      </ion-card-content>
+    </ion-card> -->
+
+  </div>
+
+</ion-content>

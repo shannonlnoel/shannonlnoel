@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>New Exercise Details</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="tertiary" (click)="this.global.dismissModal()"><ion-icon name="close-outline" size="large"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="cExerciseForm" (ngSubmit)="submitForm()"> 
+    <br/>
+
+    <div class="ion-text-center">
+      <p style="font-size:large">Please fill in the exercise information below</p>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating">Name:</ion-label>
+      <ion-input formControlName="exerciseName" type="text" required="" id="exerciseName" ></ion-input>
+      <br/>
+    </ion-item>
+
+    <span class="error ion-padding" *ngIf="errorControl.exerciseName?.errors?.required && cExerciseForm.get('exerciseName').touched">
+      Name is required<br/>
+    </span>
+
+    <ion-item>
+      <ion-label position="floating">Muscle Focus:</ion-label>
+      <ion-input class="ion-text-wrap" formControlName="exerciseFocus" type="text" required="" id="exerciseDescription" ></ion-input>
+      <br/>
+    </ion-item>
+
+    <span class="error ion-padding" *ngIf="errorControl.exerciseFocus?.errors?.required && cExerciseForm.get('exerciseFocus').touched">
+      Focus is required<br/>
+    </span>
+
+    <ion-item>
+      <ion-label position="floating">Youtube Url:</ion-label>
+      <ion-input (ionChange)="embedImage()" (ionInput)="embedImage()" (ionBlur)="embedImage()" class="ion-text-wrap" formControlName="exerciseUrl" type="text" required="" id="exerciseUrl" ></ion-input>
+      <br/>
+    </ion-item>
+
+    <span class="error ion-padding" *ngIf="errorControl.exerciseUrl?.errors?.pattern && cExerciseForm.get('exerciseUrl').touched">
+      Please submit a URL from youtube<br/>
+    </span>
+
+    <ion-item *ngIf="showVideo"> 
+      <!-- <ion-label class="ion-text-right">{{exercise.url}}</ion-label> -->
+      <iframe [src]="embed" frameborder="0" allowfullscreen></iframe>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Exercise Category:</ion-label>
+      <ion-select formControlName="exerciseCategory" type="text" required="" id="exerciseCategory" >
+        <ng-container *ngFor="let ec of exerciseCategoryDropDown">
+          <ion-select-option value="{{ec.exerciseCategoryID}},{{ec.name}}">{{ ec.name }}</ion-select-option>
+        </ng-container>
+      </ion-select>
+    </ion-item>
+
+    <span class="error ion-padding" *ngIf="errorControl.exerciseCategory?.errors?.required && cExerciseForm.get('exerciseCategory').touched">
+      Exercise Category is required<br/>
+    </span>
+
+    <br>
+    <br>
+    <ion-button type="submit" color="success" [disabled]="!cExerciseForm.valid"  class="ion-float-right" style="margin-left:2%; margin-right:10%; width:55% ;">Create Exercise</ion-button>
+    <ion-button color="light" class="ion-float-left" style="margin-left:10%;width: 20%;" (click)="this.global.dismissModal()">Cancel</ion-button>
+    
+  </form>
+</ion-content>
+

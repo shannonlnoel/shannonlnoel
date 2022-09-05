@@ -1,0 +1,104 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>New Sale Item Details</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="tertiary" (click)="this.global.dismissModal()"><ion-icon name="close-outline" size="large"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="containerMargins">
+  <form [formGroup]="cSaleItemForm" (ngSubmit)="submitForm()">
+    <br/>
+    <div class="ion-text-center">
+      <p style="font-size:large">Please fill in the sale item information below</p>
+    </div>
+
+    <div class="inputDiv">
+      <ion-label class="itemLabel">Name:</ion-label>
+      <ion-input class="input" formControlName="itemName" type="text" required="" id="itemName"></ion-input>
+      <span class="span" *ngIf="errorControl.itemName.errors?.required && cSaleItemForm.get('itemName').touched">
+        Name is required<br/>
+      </span>
+    </div>
+
+
+    <div class="inputDiv">
+      <ion-label class="itemLabel">Description:</ion-label>
+      <ion-textarea class="input" formControlName="itemDescription" type="text" required="" id="itemDescription" ></ion-textarea>
+      <span class="span" *ngIf="errorControl.itemDescription.errors?.required && cSaleItemForm.get('itemDescription').touched">
+        Description is required<br/>
+      </span>
+    </div>
+
+    <div class="inputDiv">
+          <ion-label class="ion-float-left itemLabel">Photo:</ion-label>
+          <ion-button class="ion-float-right" expand="block" (click)="getPhoto()" style="margin-right:10%; width:15%">
+          <ion-icon name="camera"></ion-icon>
+          </ion-button>
+          <div *ngIf="selectImage" class="img-wrapper">
+            <img *ngIf="selectImage" [src]="selectImage?.dataUrl" alt=""/>
+           </div>
+    </div>
+
+
+
+   <div class="inputDiv">
+    <ion-label class="itemLabel">Sale Category:</ion-label>
+    <ion-select class="input" formControlName="itemSCategory" type="text" required="" id="itemSCategory" placeholder="Select category" >
+      <ng-container *ngFor="let c of this.categoryDropDown">
+        <ion-select-option value="{{c.saleCategoryID}},{{c.name}}">{{ c.name }}</ion-select-option>
+      </ng-container>
+    </ion-select>
+    <span class="span" *ngIf="errorControl.itemSCategory.errors?.required && cSaleItemForm.get('itemSCategory').touched">
+      Category is required <br/>
+     </span>
+   </div>
+
+   <div class="inputDiv">
+    <ion-label class="itemLabel">
+      Is this item quotable?
+    </ion-label>
+    <ion-checkbox class="ion-float-right" style="margin-right:10%;" formControlName="itemQuotable" (ionChange)="checkBoxToggle($event)" color="secondary" ></ion-checkbox>
+   </div>
+
+
+    <div *ngIf="!this.quotable">
+      <div class="inputDiv">
+        <ion-label class="itemLabel">Cost:</ion-label>
+        <ion-input class="input" type="number" formControlName="itemCost" type="number" required="" id="itemCost" ></ion-input>
+        <span class="span" *ngIf="errorControl.itemCost.errors?.required && cSaleItemForm.get('itemCost').touched">
+          Cost is required <br/>
+        </span>
+        <span class="span" *ngIf="errorControl.itemCost.errors?.min">
+          Cost must be greater than 0 <br/>
+        </span>
+      </div>
+
+      <div class="inputDiv">
+        <ion-label class="itemLabel">Price:</ion-label>
+        <ion-input class="input" type="number" formControlName="itemPrice" type="number" required="" id="itemPrice" >R</ion-input>
+        <span class="span" *ngIf="errorControl.itemPrice.errors?.required && cSaleItemForm.get('itemPrice').touched">
+          Price is required <br/>
+         </span>
+         <span class="span" *ngIf="errorControl.itemPrice.errors?.min">
+          Price must be greater than 0 <br/>
+         </span>
+      </div>
+
+      <div class="inputDiv">
+        <ion-label class="itemLabel">Quantity On Hand:</ion-label>
+        <ion-input class="input" formControlName="itemQuantity" type="number" required="" id="itemQuantity" ></ion-input>
+        <span class="span" *ngIf="errorControl.itemQuantity.errors?.required && cSaleItemForm.get('itemQuantity').touched">
+          Quantity on hand is required <br/>
+         </span>
+      </div>
+    </div>
+
+    <ion-button type="submit" color="success" [disabled]="!cSaleItemForm.valid" class="ion-float-right addBtn">Create Sale Item</ion-button>
+    <ion-button color="light" class="ion-float-left cancelBtn"  (click)="this.global.dismissModal()">Cancel</ion-button>
+  </form>
+  <br>
+</ion-content>
+
+

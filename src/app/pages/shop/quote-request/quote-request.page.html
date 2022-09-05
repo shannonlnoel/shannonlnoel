@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{saleItem.name}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="tertiary" (click)="this.global.dismissModal()"><ion-icon name="close-outline" size="large"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div class="container div">
+  <form [formGroup]="quoteEmailForm" (ngSubmit)="submitForm()">
+    <h4>Email:</h4>
+    <ion-input formControlName="clientMail" type="email" id="clientMail"></ion-input>
+  <span class="error ion-padding"
+    *ngIf="errorControl.clientMail.errors?.email && quoteEmailForm.get('clientMail').touched">
+    Please enter a valid email address.
+    <br />
+  </span>
+  <span class="error ion-padding"
+    *ngIf="errorControl.clientMail.errors?.required && quoteEmailForm.get('clientMail').touched">
+    Please enter an email address.
+    <br />
+  </span>
+
+
+  <h4>Optional Message:</h4>
+  <ion-textarea rows="6" cols="20" placeholder="Type optional message here..." formControlName="optDescription" type="text" id="optDescription">
+  </ion-textarea>
+
+
+
+      <!-- <ion-col>
+        <ion-button  class="ion-align-items-center" color="light" (click)="this.global.dismissModal()">
+          Cancel
+        </ion-button>
+      </ion-col> -->
+ 
+          <ion-button  class="ion-float-right" color="secondary" (click)="submitForm()">
+            Send Request
+          </ion-button>
+
+
+
+</form>
+</div>
+</ion-content>
+
+
+
+<!-- [disabled]="quoteEmailForm.invalid" -->

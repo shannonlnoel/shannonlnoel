@@ -1,0 +1,133 @@
+<ion-header>
+  <ion-toolbar mode="ios">
+    <!--Menu toggle button that will display the menu-->
+      <ion-buttons slot="start">
+        <ion-menu-button menu="mainMenu"></ion-menu-button>
+      </ion-buttons>
+      <ion-title slot="">Measurements</ion-title>
+      <img src="../../assets/BSC.png" width="80px" height="80px" alt="logo" slot="end">
+      <!--Can we change this dynamically when switching between tabs?-->
+    <!-- </ion-item> -->
+  </ion-toolbar>
+</ion-header>
+
+<br>
+<ion-content>
+
+  <div class="w-100 flex center"><h1 class="text-center">Performance Tracking</h1></div>
+
+  <br>
+  <!-- date ranges -->
+  <div class="flex w-100 center">
+    <ion-item class="datepicker">
+      <div class="flex padding col around w-100">
+
+        <div class="flex col center">
+          <div class="from">
+  
+            <div>
+              From:
+              <ion-input #low (change)="setLow(low)" type="date"></ion-input>
+            </div>
+    
+          </div>
+          <div class="to">
+    
+            <div>
+              To:
+              <ion-input #high (change)="setHigh(high)" type="date"></ion-input>
+            </div>
+    
+          </div>
+        </div>
+
+        <div class="generate">
+          <ion-button color="tertiary" class="w-100" (click)="callGenerate()">
+            Generate
+          </ion-button>
+        </div>
+      </div>
+    </ion-item>
+  </div>
+
+  <br>
+  <div class="w-100 flex center">
+    <div class="flex row">
+      <div>
+        <ion-button (click)="add()">
+          + Add Measurement 
+        </ion-button>
+      </div>
+      <div>
+        <ion-button *ngIf="selected" (click)="download()">
+          Download
+        </ion-button>
+      </div>
+    </div>
+  </div>
+
+  <div id="htmlData" class="flex w-100 center">
+    <div class="flex row center">
+
+      <div>
+        <!-- graph -->
+
+        <div class="graphback">
+          <ion-card-header *ngIf="selected && results">
+            Weight Progress
+          </ion-card-header>
+          <ion-card-content>
+            <canvas #lineCanvas></canvas>
+          </ion-card-content>
+        </div>
+
+      </div>
+  
+      <div *ngIf="selected && results" class="flex col">
+        <!-- cards -->
+  
+        <div class="pad c1">
+          <div class="flex col">
+            <h1>{{measurementCount}}</h1>
+            <ion-text class="lightone">Recorded</ion-text>
+          </div>
+        </div>
+
+        <div class="pad c2">
+          <div class="flex col">
+            <h1>{{height}}cm</h1>
+            <ion-text class="lightone">Height</ion-text>
+          </div>
+        </div>
+
+        <div class="pad c3">
+          <div class="flex col">
+            <h1>{{avgWeight}}kg</h1>
+            <ion-text class="lightone">Avg. Weight</ion-text>
+          </div>
+        </div>
+
+        <div class="pad c4">
+          <div class="flex col">
+            <h1>{{avgWaist}}cm</h1>
+            <ion-text class="lightone">Avg. Waist</ion-text>
+          </div>
+        </div>
+
+        <div class="pad c5">
+          <div class="flex col">
+            <h1>{{avgFatPercentage}}%</h1>
+            <ion-text class="lightone">Avg. Fat</ion-text>
+          </div>
+        </div>
+
+      </div>
+  
+    </div>
+  </div>
+
+  <ion-text id="noRes" *ngIf="selected && !results">
+    <h1>No Results</h1>
+  </ion-text>
+
+</ion-content>

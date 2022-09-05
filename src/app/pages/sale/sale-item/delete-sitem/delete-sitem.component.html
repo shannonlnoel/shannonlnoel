@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Delete Sale Item Details</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="tertiary" (click)="this.global.dismissModal()"><ion-icon name="close-outline" size="large"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <br/>
+    <div class="ion-text-center">
+      <p style="font-size:large">Are you sure you want to delete the following sale item?</p>
+    </div>
+
+    <ion-item >
+      <ion-label class="ion-text-left">Name:</ion-label>
+      <ion-label class="ion-text-right">{{saleItem.name}}</ion-label>
+    </ion-item>
+    <ion-item >
+      <ion-label class="ion-text-left">Description:</ion-label>
+      <ion-label class="ion-text-wrap ion-text-right">{{saleItem.description}}</ion-label>
+    </ion-item>
+
+      <ion-item >
+        <img [src]="this.global.createImg(saleItem.photo)">
+      </ion-item>
+
+      <ion-item >
+        <ion-label class="ion-text-left">Quotable:</ion-label>
+        <ion-label class="ion-text-right">{{saleItem.quotable}}</ion-label>
+      </ion-item>
+
+      <ion-item *ngIf="saleItem.Quotable == false">
+        <ion-label class="ion-text-left">Quantity:</ion-label>
+        <ion-label class="ion-text-right">{{saleItem.quantity}}</ion-label>
+      </ion-item>
+
+
+      <ion-item *ngIf="saleItem.Quotable == false">
+        <ion-label class="ion-text-left">Price:</ion-label>
+        <ion-label class="ion-text-right">R{{saleItem.price}}</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="ion-text-left">Sale Category:</ion-label>
+        <ion-label class="ion-text-right">{{saleItem.saleCategory.name}}</ion-label>
+      </ion-item>
+      <br/><br/>
+    <ion-button expand="block" type="ion-button" (click)="delete(saleItem.saleItemID)" color="danger" class="ion-float-right" style="margin-left:2%; margin-right:10%; width:55% ;">Delete Sale Item</ion-button>
+    <ion-button color="light" class="ion-float-left" style="margin-left:10%;width: 20%;" (click)="this.global.dismissModal()">Cancel</ion-button>
+    <br/><br/>
+  </ion-content>

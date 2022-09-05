@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">HIIT</string>
+    <string name="title_activity_main">HIIT</string>
+    <string name="package_name">hiit.firstApper</string>
+    <string name="custom_url_scheme">hiit.firstApper</string>
+</resources>

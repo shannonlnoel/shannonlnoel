@@ -1,0 +1,143 @@
+<ion-content>
+        <ion-card class="centerLogin" >
+          <ion-card-content>
+            <div class="ion-text-center">
+              <h1 style="font-family: inherit; border:1px">REGISTER</h1>
+            </div>
+            <br/>
+
+            <form #regForm="ngForm" (ngSubmit)="onSubmit(regForm)">
+              <div padding>
+                <ion-item>
+                  <ion-icon name="person" slot="start" color="#282828"></ion-icon>
+                  <ion-input 
+                  type="text" 
+                  name="firstName" 
+                  ngModel 
+                  #firstName="ngModel" 
+                  placeholder="First Name" 
+                  required ></ion-input>
+                </ion-item>
+                <ion-text color="danger" *ngIf="!lastName.valid && lastName.touched">
+                  <p>Please enter your first name.</p>
+                </ion-text>
+                <ion-item>
+                  <ion-icon name="person" slot="start" color="#282828"></ion-icon>
+                  <ion-input 
+                  type="text" 
+                  name="lastName" 
+                  ngModel 
+                  #lastName="ngModel" 
+                  placeholder="Last Name" 
+                  required ></ion-input>
+                </ion-item>
+                <ion-text color="danger" *ngIf="!lastName.valid && lastName.touched">
+                  <p>Please enter your last name.</p>
+                </ion-text>
+
+                <ion-item>
+                  <ion-icon name="call" slot="start" color="#282828"></ion-icon>
+                  <ion-input 
+                  type="tel" 
+                  name="phone" 
+                  ngModel 
+                  #phone="ngModel" 
+                  placeholder="Phone number" 
+                  required 
+                  minlength="10"
+                  maxlength="10"></ion-input>
+                </ion-item>
+                <ion-text color="danger" *ngIf="!phone.valid && phone.touched">
+                  <p>Please enter a valid phone number.</p>
+                </ion-text>
+
+                <ion-item>
+                  <ion-icon name="mail" slot="start" color="#282828"></ion-icon>
+                  <ion-input 
+                  type="email" 
+                  name="emailAddress" 
+                  ngModel email 
+                  #emailCtrl="ngModel" 
+                  placeholder="Email" 
+                  required ></ion-input>
+                </ion-item>
+                <ion-text color="danger" *ngIf="!emailCtrl.valid && emailCtrl.touched">
+                  <p>Please enter a valid email address</p>
+                </ion-text>
+
+                <ion-item>
+                  <ion-icon name="mail" slot="start" color="#282828"></ion-icon>
+                  <ion-input 
+                  type="date" 
+                  name="dob" 
+                  ngModel dob 
+                  #dob="ngModel" 
+                  required ></ion-input>
+                </ion-item>
+                <ion-text color="danger" *ngIf="!emailCtrl.valid && emailCtrl.touched">
+                  <p>Please enter a date of birth</p>
+                </ion-text>
+
+                <!-- <ion-item>
+                  <ion-icon name="apps-outline" color="#282828"></ion-icon>
+                  <ion-select name="titleId">
+                    <ion-select-option>Mr.</ion-select-option>
+                  </ion-select>
+                </ion-item> -->
+
+                <ion-item>
+                  <ion-icon name="apps-outline" slot="start" color="#282828"></ion-icon>
+                  <ion-select ngModel #TitleId="ngModel" placeholder="Title" name="TitleId" type="text" id="TitleId" required>
+                      <ion-select-option *ngFor="let title of titleList" value="{{title.titleID}}">{{ title.description }}</ion-select-option>
+                  </ion-select>
+                </ion-item>
+
+                <ion-item>
+                  <ion-icon name="key" slot="start" color="#282828"></ion-icon>
+                  <ion-input 
+                  type="password" 
+                  name="password" 
+                  ngModel 
+                  #passCtrl="ngModel" 
+                  placeholder="Password" 
+                  required 
+                  minlength="8"></ion-input>
+                </ion-item>
+                <ion-text color="danger" *ngIf="!passCtrl.valid && passCtrl.touched">
+                  <p>Password should be minimum of 8 characters</p>
+                </ion-text>
+                <div>
+                  <ion-item>
+                    <ion-icon name="key" slot="start" color="#282828"></ion-icon>
+                    <ion-input 
+                    type="password" 
+                    name="c_pass" 
+                    ngModel 
+                    #c_passCtrl="ngModel" 
+                    placeholder="Confirm Password" 
+                    required 
+                    minlength="8"></ion-input>
+                  </ion-item>
+                  <ion-text color="danger" *ngIf="!c_passCtrl.valid && c_passCtrl.touched">
+                    <p>Confirm Password should be minimum of 8 characters</p>
+                  </ion-text>
+                  <ion-text color="danger" *ngIf="c_passCtrl.valid && c_passCtrl.value !== passCtrl.value">
+                    <p>Password mismatch. You have entered passwords that do not match.</p>
+                  </ion-text>
+                <br/>
+                </div>
+              </div>
+              <div>
+                <br/>
+                <ion-button [disabled]="!regForm.valid || (c_passCtrl.value !== passCtrl.value)" *ngIf="!isLoading" expand="block" shape="round" type="submit">Create Account</ion-button>
+                <div class="ion-text-center" *ngIf="isLoading">
+                  <ion-button shape="round">
+                    <ion-spinner name="circles"></ion-spinner>
+                  </ion-button>   
+                </div> 
+              </div>  
+            </form>
+            <b><a routerLink="/login"><p style="color:#717274">Cancel</p></a></b>
+          </ion-card-content>
+        </ion-card>
+</ion-content>

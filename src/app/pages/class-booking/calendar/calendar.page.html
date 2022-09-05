@@ -1,0 +1,106 @@
+<ion-content>
+  <ion-segment [(ngModel)]="calendar.mode">
+    <ion-segment-button value="month">
+      <ion-label>Month</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="week">
+      <ion-label>Week</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="day">
+      <ion-label>Day</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <ion-row>
+
+    <!-- Slide back 1 screen-->
+    <ion-col size="2">
+      <ion-button fill="clear" (click)="back()">
+        <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-col>
+    <ion-col size="8" class="ion-text-center">
+      <h2>{{this.viewTitle}}</h2>
+    </ion-col>
+    <!-- Slide forward 1 screen-->
+    <ion-col size="2">
+      <ion-button fill="clear" (click)="next()">
+        <ion-icon name="arrow-forward" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  <calendar
+  *ngIf="!isLoading"
+  [eventSource]="eventSource"
+  [calendarMode]="calendar.mode"
+  [currentDate]="calendar.currentDate"
+  (onTitleChanged)="onViewTitleChanged($event)"
+  (onEventSelected)="onEventSelected($event)"
+  [monthviewDisplayEventTemplate]="monthviewCal"
+  [monthviewEventDetailTemplate]="monthviewEventList"
+  [monthviewInactiveDisplayEventTemplate]="monthviewCalOut"
+  >
+</calendar>
+
+<!-- (onTimeSelected)="onTimeSelected($event)" -->
+
+<ng-template #monthviewCal let-view="view" let-row="row" let-col="col">
+  <div [class.with-event]="view.dates[row*7+col].events.length">
+    {{view.dates[row*7+col].label}}
+    <div class="indicator-container">
+      <div class="event-indicator" *ngFor="let ev of view.dates[row*7+col].events">
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #monthviewCalOut let-view="view" let-row="row" let-col="col">
+  <div [class.with-event]="view.dates[row*7+col].events.length">
+    {{view.dates[row*7+col].label}}
+    <div class="indicator-container">
+      <div class="event-indicator" *ngFor="let ev of view.dates[row*7+col].events">
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #monthviewEventList let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel" >
+      <ion-segment>
+        <h1> Date: {{selectedDate.date | date: 'mediumDate'}}</h1>
+      </ion-segment>
+      <!-- <ion-button (click)="this.scheduleService.addScheduleModal()" slot="end" expand="block" fill="outline">
+        Add New Event
+      </ion-button> -->
+
+  <ion-grid *ngIf="!isLoading" >
+    <ion-list *ngFor="let ev of selectedDate.events">
+      <ion-item-sliding >
+        <ion-item button (click)="onEventSelected(ev)" tappable>
+          <ion-label style="padding-left:2% ;">
+            <h1>{{ev.startTime | date : 'medium'}}</h1>
+            <p style="font-size:large">Venue:  {{ev.venue.name}}</p>
+            <p style="font-size:large">Booking type: {{ev.bookingType.name}}</p>
+            <p style="font-size:large">Lesson: {{ev.lesson.name}}</p>
+          </ion-label >
+          <ion-icon name="chevron-back-outline" size="small"></ion-icon>
+        </ion-item>
+        <ion-item-options side="end" >
+          <ion-item-option color="secondary" (click)="scheduleService.addBookingModal(ev)">Add To Cart<ion-icon name="add-circle-outline" size="large"></ion-icon></ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </ion-grid>
+
+  <div *ngIf="selectedDate.events.length == 0">
+    {{noEventsLabel}}
+  </div>
+
+</ng-template>
+
+
+
+<div class="ion-text-center " *ngIf="isLoading">
+  <ion-spinner name="circles"></ion-spinner>
+</div>
+
+
+</ion-content>

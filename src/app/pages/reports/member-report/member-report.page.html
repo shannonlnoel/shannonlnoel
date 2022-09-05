@@ -1,0 +1,27 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>memberReport</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+ <div>
+
+  <div class="w-100">
+    <div class="w-100 flex center"><h1 class="text-center">Age Distribution of Clients</h1></div>
+    <div class="w-100 flex center"><ion-button class="download child" (click)="download()">Download</ion-button></div>
+  </div>
+
+  <br>
+  <br>
+  <br>
+  <ion-card-content>
+    <div >
+      <div style="width: 70vw;max-width: 90vw;min-width: 270px;height : auto; margin: auto">
+        <canvas id="htmlData" class="child" #barCanvas></canvas>
+      </div>
+    </div>
+  </ion-card-content>
+ </div>
+  
+</ion-content>

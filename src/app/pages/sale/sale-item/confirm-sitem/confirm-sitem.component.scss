@@ -1,0 +1,30 @@
+ion-title {
+    font-family: 'Montserrat', sans-serif;;
+    font-weight: 500;
+}
+
+ion-item {
+    font-size: large;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+p {
+    font-size : 110%;
+}
+
+.imagecenter {
+    width: 100% !important;
+    display: flex;
+    justify-content: space-around;
+}
+
+img {
+    width: 60%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+ion-content {
+   height: 100% !important;
+}

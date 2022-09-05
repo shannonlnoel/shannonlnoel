@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar mode="ios">
+    <!--Menu toggle button that will display the menu-->
+      <ion-buttons slot="start">
+        <ion-menu-button menu="mainMenu"></ion-menu-button>
+      </ion-buttons>
+      <ion-title slot="">Stock</ion-title>
+      <img src="../../assets/BSC.png" width="80px" height="80px" alt="logo" slot="end">
+      <!--Can we change this dynamically when switching between tabs?-->
+    <!-- </ion-item> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <ion-searchbar #search (ionClear)="searchOrder(search.value)" (ionInput)="searchOrder(search.value)" expand="block" placeholder='Search Order...'
+  animated="true" debounce="200"></ion-searchbar>
+  <br/><br/>
+
+  <div class="ion-text-center">
+    <ion-button color="success" style="margin-left:30%;margin-right:30%" (click)="addOrder()"> 
+      Receive Stock
+    </ion-button>
+  </div>
+  <br/> 
+
+  <ion-grid id="cols">
+    <ion-row>
+
+        <ion-col class="cardFadeUp" *ngFor="let item of stock" id="cols">
+
+          <ion-card class="buttonalign">
+            <div>
+              <ion-card-header>
+                <ion-card-subtitle>Order #{{item.OrderNo}}</ion-card-subtitle>
+                <ion-card-title>{{item.name}}</ion-card-title>
+                <ion-card-subtitle>{{itemCount(item)}} Item(s) Recieved</ion-card-subtitle>
+              </ion-card-header>
+              <ion-card-content>
+                <ion-text><h6 class="lightone">{{item.email}}</h6></ion-text>
+                <ion-text><h6 class="lighttwo">{{item.date}}</h6></ion-text>
+              </ion-card-content>
+            </div>
+            <div class="colmaker">
+              <ion-button (click)="viewOrder(item)">View</ion-button>
+            </div>
+          </ion-card>
+
+        </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+  <ion-text id="noRes" *ngIf="!isLoading && noresults">
+    <h1>No Results</h1>
+  </ion-text>
+
+
+
+
+
+<!-- <ion-footer style="margin-left:20px;margin-bottom: 10px;">
+  Bester Strength and Conditioning | info@besterstrengthandconditioning.co.za
+  <br>
+</ion-footer> -->
+     
+</ion-content>

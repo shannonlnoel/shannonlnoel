@@ -1,0 +1,12 @@
+<ion-item>
+  <ion-label class="ion-text-wrap">
+    <h3>{{booking.schedule.venue.name}}</h3>
+    <small>{{booking.schedule.startTime | date: 'MMM d, h:mm a'}} - {{booking.schedule.endTime | date: 'shortTime'}}</small>
+  </ion-label>
+  <ion-button shape="round"  class="xc" (click)="removeBooking()">
+    <ion-icon  name="remove-outline"></ion-icon>
+  </ion-button>
+  <ion-label slot="end" color="dark" class="ion-text-wrap">
+    {{(booking.schedule.bookingPriceHistory[booking.schedule.bookingPriceHistory.length-1].amount)| currency: 'ZAR'}}
+  </ion-label>
+</ion-item>

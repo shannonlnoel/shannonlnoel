@@ -1,0 +1,44 @@
+<ion-content>
+
+  <br/>
+  <!--Searchbar (must make function to search)-->
+  <ion-searchbar showCancelButton="focus" expand="block" placeholder='Search VAT...' [(ngModel)]="filter"
+    animated="true" debounce="200"></ion-searchbar>
+    <br/>
+
+  <div class="ion-text-center">
+    <ion-button color="success" (click)="vatService.addVatInfoModal()">
+      Add Vat
+    </ion-button>
+  </div>
+  <br/>
+
+  <ion-grid *ngIf="!isLoading">
+    <ion-list *ngFor="let vat of vatList | filter:filter, let i = index"> 
+      <ion-item-sliding>
+        <!-- Sending through the vat object to the vat service, to be viewed in the modal -->
+        <ion-item button (click)="vatService.viewVatInfoModal(vat)">
+          <ion-label>
+            <h1>{{vat.percentage}}%</h1> <br/> 
+          </ion-label>
+          <ion-label>
+            <p style="text-align: right; margin-right: 12%;">{{dateFormatter(vat.date)}}</p> <br/> 
+          </ion-label>
+          <ion-icon name="chevron-back-outline" size="small"></ion-icon>
+        </ion-item>
+        <ion-item-options side="end" >
+          <ion-item-option color="danger" (click)="vatService.deleteVatInfoModal(vat)">Delete<ion-icon name="trash" size="large"></ion-icon></ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+
+    </ion-list>
+  </ion-grid>   
+
+  <div class="ion-text-center " *ngIf="isLoading">
+    <ion-spinner name="circles"></ion-spinner>
+  </div>
+
+</ion-content>
+
+  
+  

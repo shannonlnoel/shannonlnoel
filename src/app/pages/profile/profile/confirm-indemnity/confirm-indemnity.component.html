@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Confirm Indemnity Details</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="tertiary" (click)="dismissModal()"><ion-icon name="close-outline" size="large"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <br/>
+
+    <div class="ion-text-center">
+      <p style="font-size:large">Please confirm the following indemnity information?</p>
+    </div>
+
+    <ion-item > 
+      <ion-label>
+        <h2>Indemnity:</h2>
+          <pdf-viewer [src]="pdfSrc"
+                    [render-text]="true"
+                    [original-size]="false"
+                    ></pdf-viewer>
+      </ion-label>
+    </ion-item>
+    
+
+    <br/>
+   
+    <ion-button color="success" class="ion-float-right" style="margin-left:2%; margin-right:10%; width:55%;" (click)="uploadIndemnity()">Confirm</ion-button>
+    <ion-button color="light" class="ion-float-left" style="margin-left:10%;width: 20%;" (click)="dismissModal()">Return</ion-button>
+
+    <br />
+</ion-content>
