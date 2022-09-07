@@ -25,7 +25,7 @@ jobs:
         run: |
           npm install
           npm install -g @ionic/cli
-          ionic serve
+          ionic serve --port 80
       
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
